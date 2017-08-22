@@ -3,7 +3,13 @@
 
 using namespace std;
 
-Student::Student() { }
+Student::Student() {
+    Student:: id = "";
+    Student::name = "";
+    Student::grade1 = 0;
+    Student::grade2 = 0;
+    Student::absence = 0;
+}
 
 Student::~Student() { }
 
