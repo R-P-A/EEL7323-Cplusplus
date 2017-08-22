@@ -3,7 +3,6 @@
 using namespace std;
 
 void menu(Student* students, int numberStudents);
-void zeroStudents(Student* students, int numberStudents);
 void insertStudent(Student* students, int arrayPlace, int numberStudents);
 void listAllStudents (Student* students, int numberStudents);
 int getStudent (Student* students, string id, int numberStudents);
@@ -11,7 +10,6 @@ int getStudent (Student* students, string id, int numberStudents);
 int main() {
     int numberStudents = 20;
     Student students[numberStudents];
-    zeroStudents(students, numberStudents);
     menu(students, numberStudents);
     return 0;
 }
@@ -73,20 +71,6 @@ void menu(Student* students, int numberStudents) {
         }
 
     }
-}
-
-void zeroStudents(Student* students, int numberStudents) {
-    string tempString = "\0";
-    int tempInt = 0;
-    float tempFloat = 0;
-
-    for (int i = 0; i < numberStudents; i++) {
-        students[i].setName(tempString);
-        students[i].setId(tempString);
-        students[i].setGrade1(tempFloat);
-        students[i].setGrade2(tempFloat);
-        students[i].setAbsence(tempInt);
-    }    
 }
 
 void insertStudent(Student* students, int arrayPlace, int numberStudents) {
