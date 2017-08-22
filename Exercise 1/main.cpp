@@ -4,18 +4,15 @@ using namespace std;
 
 void menu(Student* students, int numberStudents);
 void zeroStudents(Student* students, int numberStudents);
-void insertStudent(Student* students, int arrayPlace);
+void insertStudent(Student* students, int arrayPlace, int numberStudents);
 void listAllStudents (Student* students, int numberStudents);
 int getStudent (Student* students, string id, int numberStudents);
 
 int main() {
-    char stopState;
     int numberStudents = 20;
     Student students[numberStudents];
     zeroStudents(students, numberStudents);
     menu(students, numberStudents);
-    cout << endl << "Pressione qualquer tecla e enter para sair..." << endl;
-    cin >> stopState;
     return 0;
 }
 
@@ -24,7 +21,7 @@ void menu(Student* students, int numberStudents) {
     int arrayPlace = 0;
     int studentPlace = 0;
     string id;
-    while (option < 5 || option > 5) {
+    while (option != 5) {
         cout << endl;
         cout << "Escolha uma opcao:\n";
         cout << "1. Adicionar um aluno\n";
@@ -37,8 +34,12 @@ void menu(Student* students, int numberStudents) {
 
         switch(option) {
             case 1:
-                insertStudent(students, arrayPlace);
-                arrayPlace++;
+                if (arrayPlace == numberStudents) {
+                    cout << "Memoria cheia, altere um aluno existente.\n\n";
+                } else {
+                    insertStudent(students, arrayPlace, numberStudents);
+                    arrayPlace++;
+                }
                 break;
             case 2:
                 cout << "Escolha uma matricula de um aluno para editar" << endl;
@@ -47,7 +48,7 @@ void menu(Student* students, int numberStudents) {
                 if (studentPlace == numberStudents) {
                     cout << "Aluno inexistente com esta matricula" << endl;
                 } else {
-                    insertStudent(students, studentPlace);
+                    insertStudent(students, studentPlace, numberStudents);
                 }
                 break;
             case 3:
@@ -88,30 +89,34 @@ void zeroStudents(Student* students, int numberStudents) {
     }    
 }
 
-void insertStudent(Student* students, int arrayPlace) {
+void insertStudent(Student* students, int arrayPlace, int numberStudents) {
     string tempString;
     int tempInt;
     float tempFloat;
 
-    cout << "Insira o nome do aluno:" << endl;
-    cin >> tempString;
-    students[arrayPlace].setName(tempString);
-
     cout << "Insira a matricula do aluno:" << endl;
     cin >> tempString;
-    students[arrayPlace].setId(tempString);
+    if (getStudent (students, tempString, numberStudents) != numberStudents) {
+        cout << endl << "Matricula existente, saindo deste menu, tente novamente...\n\n";
+    } else {
+        students[arrayPlace].setId(tempString);
 
-    cout << "Insira a nota da prova 1 do aluno:" << endl;
-    cin >> tempFloat;
-    students[arrayPlace].setGrade1(tempFloat);
+        cout << "Insira o nome do aluno:" << endl;
+        cin >> tempString;
+        students[arrayPlace].setName(tempString);
 
-    cout << "Insira a nota da prova 2 do aluno:" << endl;
-    cin >> tempFloat;
-    students[arrayPlace].setGrade2(tempFloat);
+        cout << "Insira a nota da prova 1 do aluno:" << endl;
+        cin >> tempFloat;
+        students[arrayPlace].setGrade1(tempFloat);
 
-    cout << "Insira as faltas do aluno:" << endl;
-    cin >> tempInt;
-    students[arrayPlace].setAbsence(tempInt);
+        cout << "Insira a nota da prova 2 do aluno:" << endl;
+        cin >> tempFloat;
+        students[arrayPlace].setGrade2(tempFloat);
+
+        cout << "Insira as faltas do aluno:" << endl;
+        cin >> tempInt;
+        students[arrayPlace].setAbsence(tempInt);
+    }
 }
 
 void listAllStudents (Student* students, int numberStudents) {
