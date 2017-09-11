@@ -3,14 +3,14 @@
 
 using namespace std;
 
+#define maximumAbsence 10
+
 Student::Student() {
     Student::id = 0;
     Student::name = "";
     Student::grade1 = 0;
     Student::grade2 = 0;
     Student::absence = 0;
-    Student::next = 0;
-    Student::prev = 0;
 }
 
 Student::~Student() { }
@@ -56,7 +56,7 @@ void Student::setAbsence(int value) {
 }
 
 bool Student::isInsufficientFrequency() {
-	return (absence > 10);
+	return (absence > maximumAbsence);
 }
 
 string Student::toString() {
@@ -71,5 +71,3 @@ string Student::toString() {
 	result.append("FI?:\t\t" + temp + "\n");
 	return result;
 }
-
-

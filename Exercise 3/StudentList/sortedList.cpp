@@ -1,19 +1,23 @@
-#include "studentsList.h"
+#include "sortedList.h"
 
-StudentsList::StudentsList(Student* list) {
+SortedList::SortedList(Node* value) {
     head = value;
 }
 
-~StudentsList() { }
-
-Student* getHead() {
-    return head;
+~SortedList() {
+    Node* cursor = head;
+    while(head) {
+        cursor = cursor->getNext();
+        delete head;
+        head = cursor;
+    }
+    head = 0; // Officially empty
 }
 
-void insert(Student* student){
+void insert(Node* student){
     bool finished = false;
-    Student* previousStudent = head->prev;
-    Student* currentStudent = *head;
+    Node* previousNode = head->prev;
+    Node* currentNode = *head;
     if (students->next == nullptr) {
         *head = *student;
     } else {
@@ -37,10 +41,10 @@ void insert(Student* student){
     }
 }
 
-void remove(Student* students, int id);
+void remove(Node* students, int id);
 
-void edit(Student* students, Student* student);
+void edit(Node* students, Node* student);
 
-void search(Student* students, Student* student);
+void search(Node* students, Node* student);
 
-void listAll(Student* students);
+void listAll(Node* students);

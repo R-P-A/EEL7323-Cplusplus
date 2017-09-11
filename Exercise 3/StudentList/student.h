@@ -9,8 +9,6 @@ class Student {
         float grade1;
         float grade2;
         int absence;
-        Student* next;
-        Student* prev;
         
     public:
         Student();
