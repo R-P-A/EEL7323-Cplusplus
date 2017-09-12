@@ -13,19 +13,33 @@ int main () {
     Student s3 = Student(3);
     Student s4 = Student(4);
     Student s5 = Student(5);
-    list->insert(s2);
-    list->insert(s4);
-    list->insert(s1);
-    list->insert(s3);
-    list->insert(s5);
+    s2.setName("joao");
+    cout << s2.getName() << endl;
+    list->insert(&s2);
+    list->insert(&s4);
+    list->insert(&s1);
+    list->insert(&s3);
+    list->insert(&s5);
     list->listAll();
     cout << endl;
-    cout << list->find(2).getId() << endl;
-    cout << list->find(1).getId() << endl;
-    cout << list->find(5).getId() << endl;
-    cout << list->find(0).getId() << endl;
-    cout << list->find(6).getId() << endl;
+    cout << list->find(2)->getId() << endl;
+    cout << list->find(1)->getId() << endl;
+    cout << list->find(5)->getId() << endl;
+    Student* tempStudent1 = (Student*) list->find(0);
+    Student* tempStudent2 = (Student*) list->find(6);
+    if (tempStudent1 != NULL) {
+        cout << tempStudent1->getId() << endl;
+    }
+    if (tempStudent2 != NULL) {
+        cout << tempStudent2->getId() << endl;
+    }
     cout << endl;
+    // Model tempModel;
+    // tempModel = list->find(2);
+    // cout << tempModel.getId() << endl;
+    // Student* tempStudent = (Student*) &tempModel;
+    // cout << tempStudent->getName();
+    // cout << endl;
     list->remove(0);
     list->listAll();
     list->remove(1);

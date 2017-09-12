@@ -1,25 +1,25 @@
 #include <iostream>
-#include "model.h"
+#include "Model.h"
 #include "node.h"
 
 using namespace std;
 
 class SortedList {
     private:
-        Node<Model>* head;
-        Node<Model>* findNode(int id);
+        Node<Model*>* head;
+        Node<Model*>* findNode(int id);
 
     public:
         SortedList();
         ~SortedList();
 
-        bool insert(Model newModel);
+        bool insert(Model* newModel);
 
         bool remove(int id);
 
-        void edit(Node<Model>* node);
+        void edit(Node<Model*>* node);
 
-        Model find(int id);
+        Model* find(int id);
 
         void listAll();
 };

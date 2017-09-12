@@ -5,7 +5,7 @@ SortedList::SortedList() {
 }
 
 SortedList::~SortedList() {
-    Node<Model>* currentNode = head;
+    Node<Model*>* currentNode = head;
     while (head != NULL) {
         currentNode = currentNode->getNext();
         delete head;
@@ -14,31 +14,30 @@ SortedList::~SortedList() {
     head = NULL; // Officially empty
 }
 
-bool SortedList::insert(Model newModel) {
-    // Use only if Model*
-    // if (newModel == NULL) {
-    //     return false;
-    // }
+bool SortedList::insert(Model* newModel) {
+    if (newModel == NULL) {
+        return false;
+    }
 
     if (head == NULL) {
-        head = new Node<Model>(newModel);
+        head = new Node<Model*>(newModel);
         return true;
     }
     
-    Node<Model>* currentNode = head;
-    int targetId = newModel.getId();
+    Node<Model*>* currentNode = head;
+    int targetId = newModel->getId();
 
     while (currentNode != NULL) {
 
-        int currentId = currentNode->getData().getId();
+        int currentId = currentNode->getData()->getId();
         
         if (currentId == targetId) {
             return false;
         }
 
         if (currentId > targetId) {
-            Node<Model>* newNode = new Node<Model>(newModel);
-            Node<Model>* prevNode = currentNode->getPrev();
+            Node<Model*>* newNode = new Node<Model*>(newModel);
+            Node<Model*>* prevNode = currentNode->getPrev();
             if (prevNode != NULL) {
                 prevNode->setNext(newNode);
             } else {
@@ -48,7 +47,7 @@ bool SortedList::insert(Model newModel) {
             return true;
         }
         if (currentNode->getNext() == NULL) {
-            currentNode->setNext(new Node<Model>(newModel));
+            currentNode->setNext(new Node<Model*>(newModel));
             return true;
         }
         currentNode = currentNode->getNext();        
@@ -57,10 +56,10 @@ bool SortedList::insert(Model newModel) {
 }
 
 bool SortedList::remove(int id) {
-    Node<Model>* trashNode = findNode(id);
+    Node<Model*>* trashNode = findNode(id);
     if (trashNode != NULL) {
-        Node<Model>* nextNode = trashNode->getNext();
-        Node<Model>* prevNode = trashNode->getPrev();
+        Node<Model*>* nextNode = trashNode->getNext();
+        Node<Model*>* prevNode = trashNode->getPrev();
         if (nextNode != NULL) {
             nextNode->setPrev(prevNode);
             if (prevNode == NULL) {
@@ -79,12 +78,12 @@ bool SortedList::remove(int id) {
     return false;
 }
 
-void SortedList::edit(Node<Model>* node){}
+void SortedList::edit(Node<Model*>* node){}
 
-Node<Model>* SortedList::findNode(int id) {
-    Node<Model>* currentNode = head;
+Node<Model*>* SortedList::findNode(int id) {
+    Node<Model*>* currentNode = head;
     while (currentNode != NULL) {
-        int currentId = currentNode->getData().getId();
+        int currentId = currentNode->getData()->getId();
         if (currentId == id) {
             return currentNode;
         }
@@ -96,20 +95,18 @@ Node<Model>* SortedList::findNode(int id) {
     return NULL;
 }
 
-Model SortedList::find(int id) {
-    Node<Model>* node = findNode(id);
+Model* SortedList::find(int id) {
+    Node<Model*>* node = findNode(id);
     if (node != NULL) {
         return node->getData();
     }
-    Model m;
-    m.setId(-1);
-    return m;
+    return NULL;
 }
 
 void SortedList::listAll() {
-    Node<Model>* currentNode = head;
+    Node<Model*>* currentNode = head;
     while (currentNode != NULL) {
-        cout << currentNode->getData().getId() << endl;
+        cout << currentNode->getData()->getId() << endl;
         currentNode = currentNode->getNext();
     }
     cout << endl;
