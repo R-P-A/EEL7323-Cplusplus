@@ -12,7 +12,7 @@ class SortedList {
         SortedList();
         ~SortedList();
 
-        void insert(Node<Model>* node);
+        bool insert(Model newModel);
 
         void remove(int id);
 

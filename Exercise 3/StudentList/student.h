@@ -12,6 +12,7 @@ class Student : public Model {
         
     public:
         Student();
+        Student(int id);
         ~Student();
 
         string getName();

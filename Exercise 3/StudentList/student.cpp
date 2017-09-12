@@ -13,6 +13,10 @@ Student::Student() {
     absence = 0;
 }
 
+Student::Student(int id) {
+	Model::setId(id);
+}
+
 Student::~Student() { }
 
 string Student::getName() {
