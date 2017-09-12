@@ -2,24 +2,26 @@
 
 using namespace std;
 
+template <class T>
 class Node {
 	private:
 
-		type data;
-		Node* next;
-		Node* prev;
+		T data;
+		Node<T>* next;
+		Node<T>* prev;
 
 	public:
 
-		Node(type tempData, Node* tempPrev, Node* tempNext);
+		Node();
+		Node(T data);
 		~Node();
 
-		type getData();
-		void setData(type tempData);
+		T getData();
+		void setData(T data);
 
 		Node* getNext();
-		void setNext(Node* tempNext);
+		void setNext(Node* next);
 
 		Node* getPrev();
-		void setPrev(Node* tempPrev);
+		void setPrev(Node* prev);
 };

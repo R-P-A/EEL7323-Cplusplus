@@ -3,36 +3,45 @@
 
 using namespace std;
 
-Node::Node(type tempData, Node* tempPrev, Node* tempNext) {
-	cout << "Constructing Node...";
-	data = tempData;
-	next = tempNext;
-	prev = tempPrev;
+template <class T>
+Node<T>::Node():Node(0) { }
+
+template <class T>
+Node<T>::Node(T data) {
+	cout << "Constructing Node..." << endl;
+	Node<T>::data = data;
+	next = NULL;
+	prev = NULL;
 }
 
-Node::~Node () {
-	delete prev;
-	delete next;
-	cout << "Deleting Node...";
+template <class T>
+Node<T>::~Node () {
+	cout << "Deleting Node..." << endl;
 }
 
-Node::getData() {
+template <class T>
+T Node<T>::getData() {
 	return data;
 }
-void Node::setData(type tempData) {
-	data = tempData;
+template <class T>
+void Node<T>::setData(T data) {
+	Node<T>::data = data;
 }
 
-Node* Node::getNext() {
+template <class T>
+Node<T>* Node<T>::getNext() {
 	return next;
 }
-void Node::setNext(Node* tempNext) {
-	next = tempNext;
+template <class T>
+void Node<T>::setNext(Node* next) {
+	Node<T>::next = next;
 }
 
-Node* Node::getPrev() {
+template <class T>
+Node<T>* Node<T>::getPrev() {
 	return prev;
 }
-void Node::setPrev(Node* tempPrev) {
-	prev = tempPrev;
+template <class T>
+void Node<T>::setPrev(Node* prev) {
+	Node<T>::prev = prev;
 }
