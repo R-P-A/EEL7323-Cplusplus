@@ -7,6 +7,7 @@ using namespace std;
 class SortedList {
     private:
         Node<Model>* head;
+        Node<Model>* findNode(int id);
 
     public:
         SortedList();
@@ -14,7 +15,7 @@ class SortedList {
 
         bool insert(Model newModel);
 
-        void remove(int id);
+        bool remove(int id);
 
         void edit(Node<Model>* node);
 

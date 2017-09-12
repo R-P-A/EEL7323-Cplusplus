@@ -5,11 +5,11 @@ SortedList::SortedList() {
 }
 
 SortedList::~SortedList() {
-    Node<Model>* cursor = head;
+    Node<Model>* currentNode = head;
     while (head != NULL) {
-        cursor = cursor->getNext();
+        currentNode = currentNode->getNext();
         delete head;
-        head = cursor;
+        head = currentNode;
     }
     head = NULL; // Officially empty
 }
@@ -56,18 +56,61 @@ bool SortedList::insert(Model newModel) {
      return false;           //Sanity check
 }
 
-void SortedList::remove(int id) {
-    
+bool SortedList::remove(int id) {
+    Node<Model>* trashNode = findNode(id);
+    if (trashNode != NULL) {
+        Node<Model>* nextNode = trashNode->getNext();
+        Node<Model>* prevNode = trashNode->getPrev();
+        if (nextNode != NULL) {
+            nextNode->setPrev(prevNode);
+            if (prevNode == NULL) {
+                head = nextNode;
+            }
+        }
+        if (prevNode != NULL) {
+            prevNode->setNext(nextNode);
+        }
+        if (trashNode == head) {
+            head = NULL;
+        }
+        delete trashNode;
+        return true;
+    }
+    return false;
 }
 
 void SortedList::edit(Node<Model>* node){}
 
-Model SortedList::find(int id){}
+Node<Model>* SortedList::findNode(int id) {
+    Node<Model>* currentNode = head;
+    while (currentNode != NULL) {
+        int currentId = currentNode->getData().getId();
+        if (currentId == id) {
+            return currentNode;
+        }
+        if (currentId > id) {
+            return NULL;
+        }
+        currentNode = currentNode->getNext();
+    }
+    return NULL;
+}
+
+Model SortedList::find(int id) {
+    Node<Model>* node = findNode(id);
+    if (node != NULL) {
+        return node->getData();
+    }
+    Model m;
+    m.setId(-1);
+    return m;
+}
 
 void SortedList::listAll() {
-    Node<Model>* cursor = head;
-    while (cursor != NULL) {
-        cout << cursor->getData().getId() << endl;
-        cursor = cursor->getNext();
+    Node<Model>* currentNode = head;
+    while (currentNode != NULL) {
+        cout << currentNode->getData().getId() << endl;
+        currentNode = currentNode->getNext();
     }
+    cout << endl;
 }
