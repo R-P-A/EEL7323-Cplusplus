@@ -4,22 +4,21 @@
 
 using namespace std;
 
-template <class T>
 class SortedList {
     private:
-        Node<T>* head;
+        Node<Model>* head;
 
     public:
         SortedList();
         ~SortedList();
 
-        void insert(Node<T>* node);
+        void insert(Node<Model>* node);
 
         void remove(int id);
 
-        void edit(Node<T>* node);
+        void edit(Node<Model>* node);
 
-        T find(int id);
+        Model find(int id);
 
         void listAll();
 };

@@ -1,22 +1,15 @@
 #include "sortedList.h"
 
-template <class T>
-SortedList<T>::SortedList(){}
+SortedList::SortedList(){}
 
-template <class T>
-SortedList<T>::~SortedList(){}
+SortedList::~SortedList(){}
 
-template <class T>
-void SortedList<T>::insert(Node<T>* node){}
+void SortedList::insert(Node<Model>* node){}
 
-template <class T>
-void SortedList<T>::remove(int id){}
+void SortedList::remove(int id){}
 
-template <class T>
-void SortedList<T>::edit(Node<T>* node){}
+void SortedList::edit(Node<Model>* node){}
 
-template <class T>
-T SortedList<T>::find(int id){}
+Model SortedList::find(int id){}
 
-template <class T>
-void SortedList<T>::listAll(){}
+void SortedList::listAll(){}
