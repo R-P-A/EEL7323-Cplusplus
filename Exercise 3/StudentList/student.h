@@ -1,10 +1,10 @@
 #include <iostream>
+#include "model.h"
 
 using namespace std;
 
-class Student {
+class Student : public Model {
     private:
-        int id;
         string name;
         float grade1;
         float grade2;
@@ -13,9 +13,6 @@ class Student {
     public:
         Student();
         ~Student();
-
-        int getId();
-        void setId(int value);
 
         string getName();
         void setName(string value);

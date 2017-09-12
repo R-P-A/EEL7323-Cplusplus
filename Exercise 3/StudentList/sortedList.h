@@ -1,18 +1,25 @@
+#include <iostream>
+#include "model.h"
+#include "node.h"
+
+using namespace std;
+
+template <class T>
 class SortedList {
     private:
-        Node* head;
+        Node<T>* head;
 
     public:
-        SortedList(Node* list);
+        SortedList();
         ~SortedList();
 
-        void insert(Node* student);
+        void insert(Node<T>* node);
 
         void remove(int id);
 
-        void edit(Node* student);
+        void edit(Node<T>* node);
 
-        void search(int id);
+        T find(int id);
 
         void listAll();
 };

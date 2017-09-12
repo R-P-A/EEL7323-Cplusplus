@@ -6,25 +6,19 @@ using namespace std;
 #define maximumAbsence 10
 
 Student::Student() {
-    Student::id = 0;
-    Student::name = "";
-    Student::grade1 = 0;
-    Student::grade2 = 0;
-    Student::absence = 0;
+    id = 0;
+    name = "";
+    grade1 = 0;
+    grade2 = 0;
+    absence = 0;
 }
 
 Student::~Student() { }
 
-int Student::getId() {
-    return id;
-}
-void Student::setId(int value) {
-    id = value;
-}
-
 string Student::getName() {
 	return name;
 }
+
 void Student::setName(string value) {
 	name = value;
 }
@@ -32,6 +26,7 @@ void Student::setName(string value) {
 float Student::getGrade1() {
 	return grade1; 
 }
+
 void Student::setGrade1(float value) {
 	grade1 = value; 
 }
@@ -39,6 +34,7 @@ void Student::setGrade1(float value) {
 float Student::getGrade2() {
 	return grade2; 
 }
+
 void Student::setGrade2(float value) {
 	grade2 = value; 
 }

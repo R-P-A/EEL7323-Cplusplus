@@ -1,50 +1,22 @@
 #include "sortedList.h"
 
-SortedList::SortedList(Node* value) {
-    head = value;
-}
+template <class T>
+SortedList<T>::SortedList(){}
 
-~SortedList() {
-    Node* cursor = head;
-    while(head) {
-        cursor = cursor->getNext();
-        delete head;
-        head = cursor;
-    }
-    head = 0; // Officially empty
-}
+template <class T>
+SortedList<T>::~SortedList(){}
 
-void insert(Node* student){
-    bool finished = false;
-    Node* previousNode = head->prev;
-    Node* currentNode = *head;
-    if (students->next == nullptr) {
-        *head = *student;
-    } else {
-        while (!finished) {
-            if (student->id < currentStudent->id) {
-                student->prev = previousStudent;
-                student->next = currentStudent;
-                previousStudent->next = student;
-                currentStudent->prev = student;
-            } else {
-                if (currentStudent->next == nullptr) {
-                    currentStudent->next = student;
-                    student->prev = currentStudent;
-                    student->next = nullptr;
-                } else {
-                    previousStudent = currentStudent;
-                    currentStudent = currentStudent->next;
-                }
-            }
-        }
-    }
-}
+template <class T>
+void SortedList<T>::insert(Node<T>* node){}
 
-void remove(Node* students, int id);
+template <class T>
+void SortedList<T>::remove(int id){}
 
-void edit(Node* students, Node* student);
+template <class T>
+void SortedList<T>::edit(Node<T>* node){}
 
-void search(Node* students, Node* student);
+template <class T>
+T SortedList<T>::find(int id){}
 
-void listAll(Node* students);
+template <class T>
+void SortedList<T>::listAll(){}

@@ -8,40 +8,46 @@ Node<T>::Node():Node(0) { }
 
 template <class T>
 Node<T>::Node(T data) {
-	cout << "Constructing Node..." << endl;
-	Node<T>::data = data;
+	this->data = data;
 	next = NULL;
 	prev = NULL;
 }
 
 template <class T>
-Node<T>::~Node () {
-	cout << "Deleting Node..." << endl;
-}
+Node<T>::~Node () { }
 
 template <class T>
 T Node<T>::getData() {
 	return data;
 }
+
 template <class T>
 void Node<T>::setData(T data) {
-	Node<T>::data = data;
+	this->data = data;
 }
 
 template <class T>
 Node<T>* Node<T>::getNext() {
 	return next;
 }
+
 template <class T>
 void Node<T>::setNext(Node* next) {
-	Node<T>::next = next;
+	this->next = next;
+	if (next != NULL) {
+		next->prev = this;
+	}
 }
 
 template <class T>
 Node<T>* Node<T>::getPrev() {
 	return prev;
 }
+
 template <class T>
 void Node<T>::setPrev(Node* prev) {
-	Node<T>::prev = prev;
+	this->prev = prev;
+	if (prev != NULL) {
+		prev->next = this;
+	}
 }
