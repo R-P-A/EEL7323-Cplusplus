@@ -78,7 +78,14 @@ bool SortedList::remove(int id) {
     return false;
 }
 
-void SortedList::edit(Node<Model*>* node){}
+bool SortedList::edit(int id, Model* modifiedModel) {
+    Node<Model*>* nodeToModify = findNode(id);
+    if (nodeToModify == NULL) {
+        return false;
+    }
+    nodeToModify->setData(modifiedModel);
+    return true;
+}
 
 Node<Model*>* SortedList::findNode(int id) {
     Node<Model*>* currentNode = head;

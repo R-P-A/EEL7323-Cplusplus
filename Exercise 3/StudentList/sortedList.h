@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Model.h"
+#include "model.h"
 #include "node.h"
 
 using namespace std;
@@ -17,7 +17,7 @@ class SortedList {
 
         bool remove(int id);
 
-        void edit(Node<Model*>* node);
+        bool edit(int id, Model* modifiedModel);
 
         Model* find(int id);
 

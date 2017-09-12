@@ -22,6 +22,7 @@ int main () {
     list->insert(&s5);
     list->listAll();
     cout << endl;
+
     cout << list->find(2)->getId() << endl;
     cout << list->find(1)->getId() << endl;
     cout << list->find(5)->getId() << endl;
@@ -34,21 +35,29 @@ int main () {
         cout << tempStudent2->getId() << endl;
     }
     cout << endl;
-    // Model tempModel;
-    // tempModel = list->find(2);
-    // cout << tempModel.getId() << endl;
-    // Student* tempStudent = (Student*) &tempModel;
-    // cout << tempStudent->getName();
-    // cout << endl;
+
+    cout << list->find(2)->getId() << endl;
+    Student* tempStudent = (Student*) list->find(2);
+    cout << tempStudent->getName() << endl;
+    cout << endl;
+
+    tempStudent->setName("maria");
+    list->edit(2, tempStudent);
+    tempStudent = (Student*) list->find(2);
+    cout << tempStudent->getName() << endl;
+    cout << endl;
+
     list->remove(0);
     list->listAll();
     list->remove(1);
+    list->listAll();
+    list->remove(3);
     list->listAll();
     list->remove(5);
     list->listAll();
     list->remove(2);
     list->listAll();
-    list->remove(3);
+    list->remove(4);
     list->listAll();
     list->remove(4);
     list->listAll();
