@@ -1,3 +1,6 @@
+#ifndef SORTEDLIST
+#define SORTEDLIST
+
 #include <iostream>
 #include "model.h"
 #include "node.h"
@@ -23,3 +26,5 @@ class SortedList {
 
         void listAll();
 };
+
+#endif          // SORTEDLIST

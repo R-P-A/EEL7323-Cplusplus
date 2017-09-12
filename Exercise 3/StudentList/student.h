@@ -1,3 +1,6 @@
+#ifndef STUDENT
+#define STUDENT
+
 #include <iostream>
 #include "model.h"
 
@@ -8,7 +11,6 @@ class Student : public Model {
         string name;
         float grade1;
         float grade2;
-        int absence;
         
     public:
         Student();
@@ -26,10 +28,7 @@ class Student : public Model {
 
         float getFinalGrade();
 
-        int getAbsence();
-        void setAbsence(int value);
-
-        bool isInsufficientFrequency();
-
         string toString();
 };
+
+#endif          // STUDENT

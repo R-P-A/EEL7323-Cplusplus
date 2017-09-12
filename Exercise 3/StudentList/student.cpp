@@ -10,7 +10,6 @@ Student::Student() {
     name = "";
     grade1 = 0;
     grade2 = 0;
-    absence = 0;
 }
 
 Student::Student(int id) {
@@ -48,26 +47,12 @@ float Student::getFinalGrade() {
 	return finalGrade;
 }
 
-int Student::getAbsence() {
-	return absence; 
-}
-void Student::setAbsence(int value) {
-	absence = value; 
-}
-
-bool Student::isInsufficientFrequency() {
-	return (absence > maximumAbsence);
-}
-
 string Student::toString() {
 	string result;
 	result = "Name:\t\t" + name + "\n";
     result.append("Matricula:\t" + to_string(id) + "\n");
 	result.append("Nota P1:\t" + to_string(grade1) + "\n");
 	result.append("Nota P2:\t" + to_string(grade2) + "\n");
-	result.append("Nota Final:\t" + to_string(getFinalGrade()) + "\n");
-	result.append("Faltas:\t\t" + to_string(absence) + "\n");
-	string temp = (isInsufficientFrequency() ? "sim" : "nao");
-	result.append("FI?:\t\t" + temp + "\n");
+    result.append("Nota Final:\t" + to_string(getFinalGrade()) + "\n");
 	return result;
 }

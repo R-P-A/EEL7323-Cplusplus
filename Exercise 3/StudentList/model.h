@@ -14,4 +14,4 @@ class Model {
         void setId(int value);
 };
 
-#endif
+#endif          // MODEL
