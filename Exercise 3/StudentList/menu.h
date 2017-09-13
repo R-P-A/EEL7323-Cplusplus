@@ -2,8 +2,12 @@
 #define MENU_H
 
 #include <iostream>
-#include "student.h"
+#include <exception>
 #include "sortedList.h"
+#include "student.h"
+#include "readInput.h"
+
+using namespace std;
 
 class Menu {
     private:

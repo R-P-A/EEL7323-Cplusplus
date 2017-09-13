@@ -1,2 +1,2 @@
-main.exe: tests/sortedListTest.cpp model.cpp node.h sortedList.cpp student.cpp
-	g++ tests/sortedListTest.cpp model.cpp node.h sortedList.cpp student.cpp -o main.exe
+main.exe: main.cpp model.cpp node.h sortedList.cpp student.cpp menu.cpp readInput.cpp
+	g++ main.cpp model.cpp node.h sortedList.cpp student.cpp menu.cpp readInput.cpp -o main.exe

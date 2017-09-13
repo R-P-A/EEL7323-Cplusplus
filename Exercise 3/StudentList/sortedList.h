@@ -2,6 +2,7 @@
 #define SORTEDLIST
 
 #include <iostream>
+#include <exception>
 #include "model.h"
 #include "node.h"
 
@@ -20,7 +21,7 @@ class SortedList {
 
         bool remove(int id);
 
-        bool edit(int id, Model* modifiedModel);
+        bool edit(Model* modifiedModel);
 
         Model* find(int id);
 

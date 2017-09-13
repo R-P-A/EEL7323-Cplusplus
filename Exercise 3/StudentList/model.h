@@ -2,6 +2,7 @@
 #define MODEL
 
 #include <iostream>
+#include <exception>
 
 using namespace std;
 

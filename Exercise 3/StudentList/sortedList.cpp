@@ -1,4 +1,10 @@
+#include <iostream>
+#include <exception>
 #include "sortedList.h"
+#include "model.h"
+#include "node.h"
+
+using namespace std;
 
 SortedList::SortedList() {
     head = NULL;
@@ -15,7 +21,9 @@ SortedList::~SortedList() {
 }
 
 bool SortedList::insert(Model* newModel) {
-    if (newModel == NULL) {
+    int targetId = newModel->getId();
+
+    if (newModel == NULL || targetId == -1) {
         return false;
     }
 
@@ -25,7 +33,6 @@ bool SortedList::insert(Model* newModel) {
     }
     
     Node<Model*>* currentNode = head;
-    int targetId = newModel->getId();
 
     while (currentNode != NULL) {
 
@@ -78,8 +85,8 @@ bool SortedList::remove(int id) {
     return false;
 }
 
-bool SortedList::edit(int id, Model* modifiedModel) {
-    Node<Model*>* nodeToModify = findNode(id);
+bool SortedList::edit(Model* modifiedModel) {
+    Node<Model*>* nodeToModify = findNode(modifiedModel->getId());
     if (nodeToModify == NULL) {
         return false;
     }
@@ -116,5 +123,4 @@ void SortedList::listAll() {
         cout << currentNode->getData()->getId() << endl;
         currentNode = currentNode->getNext();
     }
-    cout << endl;
 }

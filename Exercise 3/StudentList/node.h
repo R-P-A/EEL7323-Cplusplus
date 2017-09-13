@@ -2,6 +2,7 @@
 #define NODE
 
 #include <iostream>
+#include <exception>
 
 using namespace std;
 

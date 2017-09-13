@@ -1,5 +1,6 @@
-#include "student.h"
 #include <iostream>
+#include <exception>
+#include "student.h"
 
 using namespace std;
 

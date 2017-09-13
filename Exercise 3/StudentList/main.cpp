@@ -1,4 +1,5 @@
 #include <iostream>
+#include <exception>
 #include "sortedList.h"
 #include "student.h"
 #include "model.h"
@@ -6,7 +7,6 @@
 #include "menu.h"
 
 using namespace std;
-
 
 int main() {
     SortedList* studentList = new SortedList();
