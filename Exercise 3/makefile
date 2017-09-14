@@ -1,2 +1,14 @@
-main.exe: main.cpp model.cpp node.h sortedList.cpp student.cpp menu.cpp readInput.cpp
-	g++ main.cpp model.cpp node.h sortedList.cpp student.cpp menu.cpp readInput.cpp -o main.exe
+CXX = g++
+CFLAGS = 
+DEPS = *.h
+CPPS = *.cpp
+TARGET = main.exe
+OBJS = *.o
+
+all: main.exe
+
+main.exe: $(CPPS) $(DEPS)
+	$(CXX) -o $(TARGET) $(CPPS) $(CFLAGS)
+
+clean:
+	rm -f $(TARGET) $(OBJS)

@@ -8,7 +8,7 @@
 using namespace std;
 
 Menu::Menu() {
-    cout << "Hi!\n";
+    cout << "\nHi!\n";
     cout << "Welcome to our Student List App";
 }
 
