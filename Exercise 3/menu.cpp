@@ -60,7 +60,6 @@ bool Menu::mainMenu(SortedList* studentList) {
 Student* Menu::createStudent() {
     Student* newStudent = new Student();
     int tempInt;
-    char tempChar;
     float tempFloat;
     string tempString;
 
