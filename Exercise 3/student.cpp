@@ -51,9 +51,9 @@ float Student::getFinalGrade() {
 string Student::toString() {
 	string result;
 	result = "Name:\t\t" + name + "\n";
-    result.append("Matricula:\t" + to_string(id) + "\n");
-	result.append("Nota P1:\t" + to_string(grade1) + "\n");
-	result.append("Nota P2:\t" + to_string(grade2) + "\n");
-    result.append("Nota Final:\t" + to_string(getFinalGrade()) + "\n");
+    result.append("Id:\t\t" + to_string(id) + "\n");
+	result.append("Grade 1:\t" + to_string(grade1) + "\n");
+	result.append("Grade 2:\t" + to_string(grade2) + "\n");
+    result.append("Final Grade:\t" + to_string(getFinalGrade()) + "\n");
 	return result;
 }

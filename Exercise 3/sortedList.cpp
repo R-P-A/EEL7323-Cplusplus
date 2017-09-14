@@ -23,7 +23,7 @@ SortedList::~SortedList() {
 bool SortedList::insert(Model* newModel) {
     int targetId = newModel->getId();
 
-    if (newModel == NULL || targetId == -1) {
+    if (newModel == NULL) {
         return false;
     }
 
