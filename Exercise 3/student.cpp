@@ -31,16 +31,26 @@ float Student::getGrade1() {
 	return grade1; 
 }
 
-void Student::setGrade1(float value) {
-	grade1 = value; 
+bool Student::setGrade1(float value) {
+	if (value < 0 || value > 10) {
+		grade1 = 0;
+		return false;
+	}
+	grade1 = value;
+	return true;	
 }
 
 float Student::getGrade2() {
 	return grade2; 
 }
 
-void Student::setGrade2(float value) {
-	grade2 = value; 
+bool Student::setGrade2(float value) {
+	if (value < 0 || value > 10) {
+		grade2 = 0;
+		return false;
+	}
+	grade2 = value;
+	return true;
 }
 
 float Student::getFinalGrade() {

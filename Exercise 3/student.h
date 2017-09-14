@@ -22,10 +22,10 @@ class Student : public Model {
         void setName(string value);
 
         float getGrade1();
-        void setGrade1(float value);
+        bool setGrade1(float value);
 
         float getGrade2();
-        void setGrade2(float value);
+        bool setGrade2(float value);
 
         float getFinalGrade();
 

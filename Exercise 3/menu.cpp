@@ -65,34 +65,26 @@ Student* Menu::createStudent() {
     string tempString;
 
     cout << "\nInsert the student's Id:\n";
-    if (!readInt(tempInt) || tempInt < 0) {
-        tempInt = -1;
-        newStudent->setId(tempInt);
-        return newStudent;
+    while (!readInt(tempInt) || tempInt < 0) {
+        cout << "Value not an integer or less than 0. Please try a new value.\n";
     }
     newStudent->setId(tempInt);
 
     cout << "\nInsert the student's name:\n";
-    if (!readString(tempString)) {
-        tempString = "Failed";
+    while (!readString(tempString)) {
+        cout << "Value not a valid string. Please try a new value.\n";
     }
     newStudent->setName(tempString);
 
     cout << "\nInsert the student's first grade:\n";
-    if (!readFloat(tempFloat)) {
-        tempFloat = -1;
-        newStudent->setGrade1(tempFloat);
-        return newStudent;
+    while (!readFloat(tempFloat) || !(newStudent->setGrade1(tempFloat))) {
+        cout << "Value not a float or out of range (0-10). Please try a new value.\n";
     }
-    newStudent->setGrade1(tempFloat);
 
     cout << "\nInsert the student's second grade:\n";
-    if (!readFloat(tempFloat)) {
-        tempFloat = -1;
-        newStudent->setGrade2(tempFloat);
-        return newStudent;
+    while (!readFloat(tempFloat) || !(newStudent->setGrade2(tempFloat))) {
+        cout << "Value not a float or out of range (0-10). Please try a new value.\n";
     }
-    newStudent->setGrade2(tempFloat);
 
     return newStudent;
 }
@@ -100,16 +92,12 @@ Student* Menu::createStudent() {
 void Menu::insertStudent(SortedList* studentList) {
     Student* newStudent = new Student();
     newStudent = createStudent();
-    if (newStudent->getId() < 0 || newStudent->getGrade1() < 0 || newStudent->getGrade2() < 0) {
-        cout << "\nFailed to insert new student :( wrong input\n";
-        delete newStudent;
+
+    if (studentList->insert(newStudent)) {
+        cout << "\nStudent inserted with success! o/\n";
     } else {
-        if (studentList->insert(newStudent)) {
-            cout << "\nStudent inserted with success! o/\n";
-        } else {
-            cout << "\nFailed to insert new student :(\n";
-            delete newStudent;
-        }
+        cout << "\nFailed to insert new student :(. Check if Id already exists.\n";
+        delete newStudent;
     }
 }
 
@@ -122,23 +110,19 @@ void Menu::removeStudent(SortedList* studentList) {
     if (studentList->remove(newId)) {
         cout << "\nStudent removed with success! o/\n";
     } else {
-        cout << "\nStudent don't exist :(\n";
+        cout << "\nFailed to remove student :(. Check if student exists\n";
     }
 }
 
 void Menu::editStudent(SortedList* studentList) {
     Student* newStudent = new Student();
     newStudent = createStudent();
-    if (newStudent->getId() < 0 || newStudent->getGrade1() < 0 || newStudent->getGrade2() < 0) {
-        cout << "\nFailed to edit new student :( wrong input\n";
-        delete newStudent;
+
+    if (studentList->edit(newStudent)) {
+        cout << "\nStudent edited with success! o/\n";
     } else {
-        if (studentList->edit(newStudent)) {
-            cout << "\nStudent edited with success! o/\n";
-        } else {
-            cout << "\nStudent don't exist :(\n";
-            delete newStudent;
-        }
+        cout << "\nFailed to edit student :(. Check if student exists\n";
+        delete newStudent;
     }
 }
 
@@ -152,7 +136,7 @@ void Menu::printStudent(SortedList* studentList) {
     newStudent = (Student*) studentList->find(newId);
 
     if (newStudent == NULL) {
-        cout << "Student don't exist :(\n";
+        cout << "\nFailed to print student :(. Check if student exists\n";
         delete newStudent;
     } else {
         cout << newStudent->toString();
