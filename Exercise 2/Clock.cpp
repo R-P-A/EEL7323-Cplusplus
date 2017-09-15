@@ -1,36 +1,26 @@
-class Clock {
-    protected:
-        unsigned int hr, min, sec;
-        bool is_pm;
-    public:
-        Clock (unsigned int h, unsigned int s, unsigned int m, bool pm);
-        ~Clock();
-        void setClock (unsigned int h, unsigned int m, unsigned int s, bool pm);
-        void readClock (unsigned int& h, unsigned int& m, unsigned int& s, bool& pm);
-        void advance ();
-};
+#include "clock.h"
 
-Clock::Clock(unsigned int h, unsigned int m, unsigned int s, bool pm) {
-    hr = h;
-    min = m;
-    sec = s;
-    is_pm = pm;
+Clock::Clock(unsigned int hour, unsigned int min, unsigned int sec, bool isPM) {
+    this->hour = hour;
+    this->min = min;
+    this->sec = sec;
+    this->isPM = isPM;
 }
 
 Clock::~Clock() { }
 
-void Clock::setClock (unsigned int h, unsigned int m, unsigned int s, bool pm) {
-    hr = h;
-    min = m;
-    sec = s;
-    is_pm = pm;
+void Clock::setClock (unsigned int hour, unsigned int min, unsigned int sec, bool isPM) {
+    this->hour = hour;
+    this->min = min;
+    this->sec = sec;
+    this->isPM = isPM;
 }
 
-void Clock::readClock (unsigned int& h, unsigned int& m, unsigned int& s, bool& pm) {
-    h = hr;
-    m = min;
-    s = sec;
-    pm = is_pm;
+void Clock::readClock (unsigned int& hour, unsigned int& min, unsigned int& sec, bool& isPM) {
+    hour = this->hour;
+    min = this->min;
+    sec = this->sec;
+    isPM = this->isPM;
 }
 
 void Clock::advance () {
@@ -40,10 +30,10 @@ void Clock::advance () {
         min++;
         if (min >= 60) {
             min = 0;
-            hr++;
-            if (hr > 12) {
-                hr = 1;
-                is_pm = !is_pm;
+            hour++;
+            if (hour > 12) {
+                hour = 1;
+                isPM = !isPM;
             }
         }
     }

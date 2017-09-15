@@ -1,42 +1,33 @@
-class Calendar {
-    protected:
-        int yr, mo, day;
-    public:
-        Calendar (unsigned int y, unsigned int m, unsigned int d);
-        ~Calendar();
-        void setCalendar (unsigned int y, unsigned int m, unsigned int d);
-        void readCalendar (unsigned int& y, unsigned int& m, unsigned int& d);
-        void advance ();
-};
+#include "calendar.h"
 
-Calendar::Calendar (unsigned int y, unsigned int m, unsigned int d) {
-    yr = y;
-    mo = m;
-    day = d;
+Calendar::Calendar (unsigned int year, unsigned int month, unsigned int day) {
+    this->year = year;
+    this->month = month;
+    this->day = day;
 }
 
 Calendar::~Calendar() { }
 
-void Calendar::setCalendar (unsigned int y, unsigned int m, unsigned int d) {
-    yr = y;
-    mo = m;
-    day = d;
+void Calendar::setCalendar (unsigned int year, unsigned int month, unsigned int day) {
+    this->year = year;
+    this->month = month;
+    this->day = day;
 }
 
-void Calendar::readCalendar (unsigned int& y, unsigned int& m, unsigned int& d){
-    y = yr;
-    m = mo;
-    d = day;
+void Calendar::readCalendar (unsigned int& year, unsigned int& month, unsigned int& day){
+    year = this->year;
+    month = this->month;
+    day = this->day;
 }
 
 void Calendar::advance () {
     day++;
     if (day > 30) {
         day = 1;
-        mo++;
-        if (mo > 12) {
-            mo = 1;
-            yr++;
+        month++;
+        if (month > 12) {
+            month = 1;
+            year++;
         }
     }
 }

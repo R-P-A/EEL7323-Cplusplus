@@ -1,4 +1,4 @@
-#include "ClockCalendar.cpp"
+#include "clockCalendar.h"
 #include <iostream>
 #include <time.h>
 
@@ -10,9 +10,7 @@ int main()
 {
     bool secondAdvanced = false;
     ClockCalendar cc (2017, 8, 29, 07, 15, 30, true);
-    unsigned int year, month, day, hour, minute, second;
-    bool isPM;
-    double oldElapsed;
+    double oldElapsed = 0;
     time_t timeStart, timeNow;
 
     time(&timeStart);
@@ -22,19 +20,7 @@ int main()
         if (secondAdvanced) {
             secondAdvanced = false;
             cc.advance();
-            cc.readCalendar(year, month, day);
-            cc.readClock(hour, minute, second, isPM);
-            cout << year << "/";
-            cout << month << "/";
-            cout << day << " - ";
-            cout << hour << ":";
-            cout << minute << ":";
-            cout << second;
-            if (isPM)
-                cout << " pm";
-            else
-                cout << " am";
-            cout << endl << endl;
+            cout << cc.toString() << endl;
         }
     }
     return 0;
