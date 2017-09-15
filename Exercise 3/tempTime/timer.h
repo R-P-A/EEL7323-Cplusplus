@@ -6,12 +6,17 @@
 
 using namespace std;
 
-Timer {
+class Timer {
 	private:
-		time_t start, now;
-		
+		clock_t start, now;
 
 	public:
+		Timer();
+		~Timer();
+
+		unsigned long int getStart();
+
+		unsigned long int getNow();
 };
 
-#endif;		// TIMER
+#endif		// TIMER
