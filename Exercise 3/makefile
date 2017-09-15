@@ -1,15 +1,12 @@
 CXX = g++
 CXXFLAGS = -Wall
-SRCS = readInput.c model.c student.c sortedList.c menu.c main.c
-OBJS = ${SRCS:.c=.o}
+SRCS = readInput.cpp model.cpp student.cpp sortedList.cpp menu.cpp main.cpp
+OBJS = ${SRCS:.cpp=.o}
 
-all: windows
-
-windows: $(OBJS) node.h
-	$(CXX) $(CXXFLAGS) main.o readInput.o model.o student.o node.h sortedList.o menu.o -o main.exe
+all: linux
 
 linux: $(OBJS) node.h
-	$(CXX) $(CXXFLAGS) main.o readInput.o model.o student.o node.h sortedList.o menu.o -o main.exe
+	$(CXX) $(CXXFLAGS) $(OBJS) -o main.exe
 	chmod +x main.exe
 
 readInput: $@.cpp $@.h
