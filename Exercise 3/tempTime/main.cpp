@@ -1,5 +1,5 @@
 #include <iostream>
-#include <time.h>
+#include <chrono>
 #include "clockCalendar.h"
 #include "timer.h"
 
@@ -12,6 +12,7 @@ int main()
     ClockCalendar cc (2017, 8, 29, 07, 15, 30, true);
 
     Timer timer;
+    unsigned long int secondsSinceStart;
 
     cout << "Starting time:\n";
     cout << timer.getStart() << endl;
@@ -20,7 +21,12 @@ int main()
         cout << "\ntype anything to print current time:\n";
         getchar();
         getchar();
-        cout << timer.getNow() << endl;
+        secondsSinceStart = timer.getNow();
+        cout << secondsSinceStart << endl;
+        for (unsigned long int i = 0; i < secondsSinceStart; i++) {
+            cc.advance();
+        }
+        cout << cc.toString();
     }
     return 0;
 }
