@@ -5,16 +5,39 @@
 #include "model.h"
 #include "node.h"
 #include "menu.h"
+#include "clockCalendar.h"
+#include "timer.h"
+
+#define brazilTime 3*60*60;
 
 using namespace std;
 
 int main() {
 	SortedList* studentList = new SortedList();
+	ClockCalendar* timeDate = new ClockCalendar(1970, 1, 1, 0, 0, 0, false);
+	Timer* timer = new Timer();
 	bool cont = true;
 	Menu* menu = new Menu();
-	while (cont) {
-		cont = menu->mainMenu(studentList);
+
+	unsigned long int secs;
+
+	cout << "\nPlease wait... Calculating currente time and date.\n";
+	secs = timer->getSecsSince1970() - brazilTime;
+	for (unsigned long int i = 0; i < secs; i++) {
+		timeDate->advance();
 	}
+	secs = timer->getSecsSinceLastCall();
+	for (unsigned long int i = 0; i < secs; i++) {
+		timeDate->advance();
+	}
+	cout << "Currente time and date is: " << timeDate->toString() << endl;
+
+	while (cont) {
+		cont = menu->mainMenu(studentList, timeDate, timer);
+	}
+
+	delete timeDate;
+	delete timer;
 	delete menu;
 	delete studentList;
 	return 0;

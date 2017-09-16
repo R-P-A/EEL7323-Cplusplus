@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -Wall
-SRCS = readInput.cpp model.cpp student.cpp sortedList.cpp menu.cpp main.cpp
+SRCS = readInput.cpp model.cpp student.cpp sortedList.cpp menu.cpp calendar.cpp clock.cpp clockCalendar.cpp timer.cpp main.cpp
 OBJS = ${SRCS:.cpp=.o}
 
 all: linux
@@ -22,6 +22,18 @@ sortedList: $@.cpp $@.h node.h model.o
 	$(CXX) $(CXXFLAGS) $@.cpp -c
 
 menu: $@.cpp $@.h sortedList.o student.o readInput.o
+	$(CXX) $(CXXFLAGS) $@.cpp -c
+
+calendar: $@.cpp $@.h
+	$(CXX) $(CXXFLAGS) $@.cpp -c
+
+clock: $@.cpp $@.h
+	$(CXX) $(CXXFLAGS) $@.cpp -c
+
+clockCalendar: $@.cpp $@.h model.o
+	$(CXX) $(CXXFLAGS) $@.cpp -c
+
+timer: $@.cpp $@.h
 	$(CXX) $(CXXFLAGS) $@.cpp -c
 
 main: $@.cpp $(OBJS)

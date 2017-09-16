@@ -4,6 +4,8 @@
 #include "student.h"
 #include "menu.h"
 #include "readInput.h"
+#include "clockCalendar.h"
+#include "timer.h"
 
 using namespace std;
 
@@ -17,7 +19,7 @@ Menu::~Menu() {
 	cout << "We shall see you again!\n\n";
 }
 	
-bool Menu::mainMenu(SortedList* studentList) {
+bool Menu::mainMenu(SortedList* studentList, ClockCalendar* timeDate, Timer* timer) {
 	int option;
 	bool cont = true;
 	cout << "\n\nChoose one option below to edit the Student List:\n";
@@ -33,13 +35,13 @@ bool Menu::mainMenu(SortedList* studentList) {
 
 	switch (option) {
 		case 1:
-			insertStudent(studentList);
+			insertStudent(studentList, timeDate, timer);
 			break;
 		case 2:
 			removeStudent(studentList);
 			break;
 		case 3:
-			editStudent(studentList);
+			editStudent(studentList, timeDate, timer);
 			break;
 		case 4:
 			printStudent(studentList);
@@ -88,11 +90,17 @@ Student* Menu::createStudent() {
 	return newStudent;
 }
 
-void Menu::insertStudent(SortedList* studentList) {
-	Student* newStudent = new Student();
-	newStudent = createStudent();
+void Menu::insertStudent(SortedList* studentList, ClockCalendar* timeDate, Timer* timer) {
+	Student* newStudent = createStudent();
+	unsigned long int secs;
 
 	if (studentList->insert(newStudent)) {
+		secs = timer->getSecsSinceLastCall();
+		for (unsigned long int i = 0; i < secs; i++) {
+			timeDate->advance();
+		}
+		newStudent->setCreationTime(timeDate->toString());
+		newStudent->setModificationTime(timeDate->toString());
 		cout << "\nStudent inserted with success! o/\n";
 	} else {
 		cout << "\nFailed to insert new student :(. Check if Id already exists.\n";
@@ -113,11 +121,18 @@ void Menu::removeStudent(SortedList* studentList) {
 	}
 }
 
-void Menu::editStudent(SortedList* studentList) {
-	Student* newStudent = new Student();
-	newStudent = createStudent();
+void Menu::editStudent(SortedList* studentList, ClockCalendar* timeDate, Timer* timer) {
+	Student* newStudent = createStudent();
+	unsigned long int secs;
+
+	newStudent->setCreationTime(((Student*) studentList->find(newStudent->getId()))->getCreationTime());
 
 	if (studentList->edit(newStudent)) {
+		secs = timer->getSecsSinceLastCall();
+		for (unsigned long int i = 0; i < secs; i++) {
+			timeDate->advance();
+		}
+		newStudent->setModificationTime(timeDate->toString());
 		cout << "\nStudent edited with success! o/\n";
 	} else {
 		cout << "\nFailed to edit student :(. Check if student exists\n";
@@ -131,8 +146,7 @@ void Menu::printStudent(SortedList* studentList) {
 	if (!readInt(newId))
 		newId = -1;
 
-	Student* newStudent = new Student();
-	newStudent = (Student*) studentList->find(newId);
+	Student* newStudent = (Student*) studentList->find(newId);
 
 	if (newStudent == NULL) {
 		cout << "\nFailed to print student :(. Check if student exists\n";

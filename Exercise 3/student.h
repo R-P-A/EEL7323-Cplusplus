@@ -12,6 +12,8 @@ class Student : public Model {
 		string name;
 		float grade1;
 		float grade2;
+		string creationTime;
+		string modificationTime;
 		
 	public:
 		Student();
@@ -26,6 +28,12 @@ class Student : public Model {
 
 		float getGrade2();
 		bool setGrade2(float value);
+
+		string getCreationTime();
+		void setCreationTime(string value);
+
+		string getModificationTime();
+		void setModificationTime(string value);
 
 		float getFinalGrade();
 

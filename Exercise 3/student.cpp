@@ -11,6 +11,7 @@ Student::Student() {
 	name = "";
 	grade1 = 0;
 	grade2 = 0;
+	creationTime = "";
 }
 
 Student::Student(int id) {
@@ -53,6 +54,22 @@ bool Student::setGrade2(float value) {
 	return true;
 }
 
+string Student::getCreationTime() {
+	return creationTime;
+}
+
+void Student::setCreationTime(string value) {
+	creationTime = value;
+}
+
+string Student::getModificationTime() {
+	return modificationTime;
+}
+
+void Student::setModificationTime(string value) {
+	modificationTime = value;
+}
+
 float Student::getFinalGrade() {
 	float finalGrade = (grade1 + grade2)/2;
 	return finalGrade;
@@ -65,5 +82,7 @@ string Student::toString() {
 	result.append("Grade 1:\t" + to_string(grade1) + "\n");
 	result.append("Grade 2:\t" + to_string(grade2) + "\n");
 	result.append("Final Grade:\t" + to_string(getFinalGrade()) + "\n");
+	result.append("Created:\t" + creationTime + "\n");
+	result.append("Last Modified:\t" + modificationTime + "\n");
 	return result;
 }
