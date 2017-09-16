@@ -11,7 +11,7 @@ ClockCalendar::ClockCalendar (unsigned int year, unsigned int month, unsigned in
 ClockCalendar::~ClockCalendar () { }
 
 void ClockCalendar::advance () {
-	bool wasPm = Clock::isPM; // save current pm.
+	bool wasPm = Clock::isPM; // Save current pm.
 	Clock::advance();
 	if ((wasPm == true) && (Clock::isPM == false))
 		Calendar::advance();

@@ -14,7 +14,7 @@ using namespace std;
 
 int main() {
 	SortedList* studentList = new SortedList();
-	ClockCalendar* timeDate = new ClockCalendar(1970, 1, 1, 0, 0, 0, false);
+	ClockCalendar* timeDate = new ClockCalendar(1970, 1, 1, 0, 0, 0, false);	// Epoch date
 	Timer* timer = new Timer();
 	bool cont = true;
 	Menu* menu = new Menu();
@@ -26,6 +26,7 @@ int main() {
 	for (unsigned long int i = 0; i < secs; i++) {
 		timeDate->advance();
 	}
+	// Correction due to long iterations above
 	secs = timer->getSecsSinceLastCall();
 	for (unsigned long int i = 0; i < secs; i++) {
 		timeDate->advance();
