@@ -9,23 +9,23 @@
 using namespace std;
 
 class SortedList {
-    private:
-        Node<Model*>* head;
-        Node<Model*>* findNode(int id);
+	private:
+		Node<Model*>* head;
+		Node<Model*>* findNode(int id);
 
-    public:
-        SortedList();
-        ~SortedList();
+	public:
+		SortedList();
+		~SortedList();
 
-        bool insert(Model* newModel);
+		bool insert(Model* newModel);
 
-        bool remove(int id);
+		bool remove(int id);
 
-        bool edit(Model* modifiedModel);
+		bool edit(Model* modifiedModel);
 
-        Model* find(int id);
+		Model* find(int id);
 
-        void listAll();
+		void listAll();
 };
 
-#endif          // SORTEDLIST
+#endif		  // SORTEDLIST

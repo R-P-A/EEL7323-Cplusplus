@@ -7,10 +7,10 @@ using namespace std;
 #define maximumAbsence 10
 
 Student::Student() {
-    id = 0;
-    name = "";
-    grade1 = 0;
-    grade2 = 0;
+	id = 0;
+	name = "";
+	grade1 = 0;
+	grade2 = 0;
 }
 
 Student::Student(int id) {
@@ -61,9 +61,9 @@ float Student::getFinalGrade() {
 string Student::toString() {
 	string result;
 	result = "Name:\t\t" + name + "\n";
-    result.append("Id:\t\t" + to_string(id) + "\n");
+	result.append("Id:\t\t" + to_string(id) + "\n");
 	result.append("Grade 1:\t" + to_string(grade1) + "\n");
 	result.append("Grade 2:\t" + to_string(grade2) + "\n");
-    result.append("Final Grade:\t" + to_string(getFinalGrade()) + "\n");
+	result.append("Final Grade:\t" + to_string(getFinalGrade()) + "\n");
 	return result;
 }

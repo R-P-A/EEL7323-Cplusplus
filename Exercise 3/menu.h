@@ -10,19 +10,19 @@
 using namespace std;
 
 class Menu {
-    private:
-        Student* createStudent();
+	private:
+		Student* createStudent();
 
-    public:
-        Menu();
-        ~Menu();
+	public:
+		Menu();
+		~Menu();
 
-        bool mainMenu(SortedList* studentList);
-        void insertStudent(SortedList* studentList);
-        void removeStudent(SortedList* studentList);
-        void editStudent(SortedList* studentList);
-        void printStudent(SortedList* studentList);
-        void listAll(SortedList* studentList);
+		bool mainMenu(SortedList* studentList);
+		void insertStudent(SortedList* studentList);
+		void removeStudent(SortedList* studentList);
+		void editStudent(SortedList* studentList);
+		void printStudent(SortedList* studentList);
+		void listAll(SortedList* studentList);
 };
 
-#endif      // MENU_H
+#endif	  // MENU_H

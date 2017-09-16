@@ -9,13 +9,13 @@
 using namespace std;
 
 int main() {
-    SortedList* studentList = new SortedList();
-    bool cont = true;
-    Menu* menu = new Menu();
-    while (cont) {
-        cont = menu->mainMenu(studentList);
-    }
-    delete menu;
-    delete studentList;
-    return 0;
+	SortedList* studentList = new SortedList();
+	bool cont = true;
+	Menu* menu = new Menu();
+	while (cont) {
+		cont = menu->mainMenu(studentList);
+	}
+	delete menu;
+	delete studentList;
+	return 0;
 }

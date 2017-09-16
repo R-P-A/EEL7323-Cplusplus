@@ -5,9 +5,9 @@
 using namespace std;
 
 int Model::getId() {
-    return id;
+	return id;
 }
 
 void Model::setId(int value) {
-    id = value;
+	id = value;
 }
