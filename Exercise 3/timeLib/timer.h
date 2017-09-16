@@ -8,15 +8,15 @@ using namespace std;
 
 class Timer {
 	private:
-		clock_t start, now;
+		time_t start, now;
 
 	public:
 		Timer();
 		~Timer();
 
-		unsigned long int getStart();
+		unsigned long int getSecsSince1970();
 
-		unsigned long int getNow();
+		unsigned long int getSecsSinceLastCall();
 };
 
 #endif		// TIMER
