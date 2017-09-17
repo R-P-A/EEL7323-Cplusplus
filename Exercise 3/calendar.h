@@ -1,3 +1,16 @@
+/** 
+ *	@author  Rafael Pintar Alevato
+ *	@date    17/09/2017
+ *	@version 1.0 
+ *	
+ *	@brief Calendar that advances by one day.
+ *
+ *	@section DESCRIPTION
+ *	
+ *	Creates a simple calendar that calculates and advance its date
+ *	in increments of one day.
+ */
+
 #ifndef CALENDAR
 #define CALENDAR
 

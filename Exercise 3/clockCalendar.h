@@ -1,3 +1,16 @@
+/** 
+ *	@author  Rafael Pintar Alevato
+ *	@date    17/09/2017
+ *	@version 1.0 
+ *	
+ *	@brief Calendar and Clock that advances by one second.
+ *
+ *	@section DESCRIPTION
+ *	
+ *	Creates a simple clock and a calendar that calculates and advance its time
+ *	in increments of one second.
+ */
+
 #ifndef CLOCKCALENDAR
 #define CLOCKCALENDAR
 

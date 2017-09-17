@@ -21,7 +21,7 @@ Menu::~Menu() {
 	
 bool Menu::mainMenu(SortedList* studentList, ClockCalendar* timeDate, Timer* timer) {
 	int option;
-	bool cont = true;
+	bool cont = true;	// False for exiting the program
 	cout << "\n\nChoose one option below to edit the Student List:\n";
 	cout << "1. Insert a student\n";
 	cout << "2. Remove a student\n";
@@ -104,12 +104,13 @@ void Menu::insertStudent(SortedList* studentList, ClockCalendar* timeDate, Timer
 		cout << "\nStudent inserted with success! o/\n";
 	} else {
 		cout << "\nFailed to insert new student :(. Check if Id already exists.\n";
-		delete newStudent;
+		delete newStudent;	// Delete if failed, because this created student won't be used anymore.
 	}
 }
 
 void Menu::removeStudent(SortedList* studentList) {
 	int newId;
+
 	cout << "\nInsert the student Id to remove:\n";
 	if (!readInt(newId))
 		newId = -1;
@@ -122,12 +123,12 @@ void Menu::removeStudent(SortedList* studentList) {
 }
 
 void Menu::editStudent(SortedList* studentList, ClockCalendar* timeDate, Timer* timer) {
+	cout << "Id of the student to be edited, the other values will be substituted\n";
 	Student* newStudent = createStudent();
 	unsigned long int secs;
 
-	newStudent->setCreationTime(((Student*) studentList->find(newStudent->getId()))->getCreationTime());
-
 	if (studentList->edit(newStudent)) {
+		newStudent->setCreationTime(((Student*) studentList->find(newStudent->getId()))->getCreationTime());
 		secs = timer->getSecsSinceLastCall();
 		for (unsigned long int i = 0; i < secs; i++) {
 			timeDate->advance();
@@ -136,7 +137,7 @@ void Menu::editStudent(SortedList* studentList, ClockCalendar* timeDate, Timer* 
 		cout << "\nStudent edited with success! o/\n";
 	} else {
 		cout << "\nFailed to edit student :(. Check if student exists\n";
-		delete newStudent;
+		delete newStudent;	// Delete if failed, because this created student won't be used anymore.
 	}
 }
 
@@ -150,7 +151,6 @@ void Menu::printStudent(SortedList* studentList) {
 
 	if (newStudent == NULL) {
 		cout << "\nFailed to print student :(. Check if student exists\n";
-		delete newStudent;
 	} else {
 		cout << newStudent->toString();
 	}
@@ -158,5 +158,6 @@ void Menu::printStudent(SortedList* studentList) {
 
 void Menu::listAll(SortedList* studentList) {
 	cout << "\nListing all students Ids:\n";
-	studentList->listAll();
+	string result = studentList->listAll();
+	cout << result;
 }

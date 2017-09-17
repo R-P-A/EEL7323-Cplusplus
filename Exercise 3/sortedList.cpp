@@ -17,7 +17,7 @@ SortedList::~SortedList() {
 		delete head;
 		head = currentNode;
 	}
-	head = NULL; // Officially empty
+	head = NULL;	// Officially empty
 }
 
 bool SortedList::insert(Model* newModel) {
@@ -27,6 +27,7 @@ bool SortedList::insert(Model* newModel) {
 		return false;
 	}
 
+	// If head don't exist, newModel is head
 	if (head == NULL) {
 		head = new Node<Model*>(newModel);
 		return true;
@@ -34,17 +35,21 @@ bool SortedList::insert(Model* newModel) {
 	
 	Node<Model*>* currentNode = head;
 
+	// Walks through whole list
 	while (currentNode != NULL) {
 
 		int currentId = currentNode->getData()->getId();
 		
+		// If id already exists don't insert
 		if (currentId == targetId) {
 			return false;
 		}
 
+		// It's sorted, so if currentId > targetId try to insert before the current node
 		if (currentId > targetId) {
 			Node<Model*>* newNode = new Node<Model*>(newModel);
 			Node<Model*>* prevNode = currentNode->getPrev();
+
 			if (prevNode != NULL) {
 				prevNode->setNext(newNode);
 			} else {
@@ -53,22 +58,27 @@ bool SortedList::insert(Model* newModel) {
 			currentNode->setPrev(newNode);
 			return true;
 		}
+
+		// Check if it's the last node in the list. If it's, insert newNode in the last position.
 		if (currentNode->getNext() == NULL) {
 			currentNode->setNext(new Node<Model*>(newModel));
 			return true;
 		}
-		currentNode = currentNode->getNext();		
+		currentNode = currentNode->getNext();
 	}
-	 return false;		   //Sanity check
+	return false;	//Sanity check
 }
 
 bool SortedList::remove(int id) {
 	Node<Model*>* trashNode = findNode(id);
+
+	// If found the node in the list, delete it.
 	if (trashNode != NULL) {
 		Node<Model*>* nextNode = trashNode->getNext();
 		Node<Model*>* prevNode = trashNode->getPrev();
 		if (nextNode != NULL) {
 			nextNode->setPrev(prevNode);
+			// New head if it's the new first node.
 			if (prevNode == NULL) {
 				head = nextNode;
 			}
@@ -117,10 +127,12 @@ Model* SortedList::find(int id) {
 	return NULL;
 }
 
-void SortedList::listAll() {
+string SortedList::listAll() {
+	string result = "";
 	Node<Model*>* currentNode = head;
 	while (currentNode != NULL) {
-		cout << currentNode->getData()->getId() << endl;
+		result.append(to_string(currentNode->getData()->getId()) + "\n");
 		currentNode = currentNode->getNext();
 	}
+	return result;
 }

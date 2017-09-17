@@ -4,11 +4,6 @@
 
 using namespace std;
 
-/**
- * Read an input from user and saves it in an int.
- * @param	output	Result if input was int
- * @return	Whether is successfully converted to int
- */
 bool readInt(int& output) {
 	string input;
 	bool result = true;
@@ -28,11 +23,6 @@ bool readInt(int& output) {
 	return result;
 }
 
-/**
- * Read an input from user and saves it in an float.
- * @param	output	Result if input was float
- * @return	Whether is successfully converted to float
- */
 bool readFloat(float& output) {
 	string input;
 	bool result = true;
@@ -52,11 +42,6 @@ bool readFloat(float& output) {
 	return result;
 }
 
-/**
- * Read an input from user and saves it in an char.
- * @param	output	Result if input was char
- * @return	Whether is successfully converted to char
- */
 bool readChar(char& output) {
 	string input;
 	bool result = true;
@@ -77,11 +62,6 @@ bool readChar(char& output) {
 	return result;
 }
 
-/**
- * Read an input from user and saves it in an string.
- * @param	output	Result if input was string not empty
- * @return	Whether is successfully converted to char
- */
 bool readString(string& output) {
 	bool result = true;
 

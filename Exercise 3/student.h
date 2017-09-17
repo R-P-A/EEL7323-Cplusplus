@@ -1,3 +1,11 @@
+/** 
+ *	@author  Rafael Pintar Alevato
+ *	@date    17/09/2017
+ *	@version 1.0 
+ *	
+ *	@brief Student class which represents a generic student.
+ */
+
 #ifndef STUDENT
 #define STUDENT
 
@@ -24,9 +32,11 @@ class Student : public Model {
 		void setName(string value);
 
 		float getGrade1();
+		/** @return Whether set was successfull if the grade is within limits (0-10). */
 		bool setGrade1(float value);
 
 		float getGrade2();
+		/** @return Whether set was successfull if the grade is within limits (0-10). */
 		bool setGrade2(float value);
 
 		string getCreationTime();
@@ -35,8 +45,10 @@ class Student : public Model {
 		string getModificationTime();
 		void setModificationTime(string value);
 
+		/** @return Average of grades. */
 		float getFinalGrade();
 
+		/** @return Every variable in a beutiful way. */
 		string toString();
 };
 

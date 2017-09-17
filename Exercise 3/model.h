@@ -1,3 +1,11 @@
+/** 
+ *	@author  Rafael Pintar Alevato
+ *	@date    17/09/2017
+ *	@version 1.0 
+ *	
+ *	@brief This model contains the id used in the SortedList class.
+ */
+
 #ifndef MODEL
 #define MODEL
 
