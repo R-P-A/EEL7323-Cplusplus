@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -Wall
-SRCS = readInput.cpp model.cpp student.cpp sortedList.cpp menu.cpp calendar.cpp clock.cpp clockCalendar.cpp timer.cpp main.cpp
+SRCS = myString.cpp readInput.cpp model.cpp student.cpp sortedList.cpp menu.cpp calendar.cpp clock.cpp clockCalendar.cpp timer.cpp main.cpp
 OBJS = ${SRCS:.cpp=.o}
 
 all: linux
@@ -8,6 +8,12 @@ all: linux
 linux: $(OBJS) node.h
 	$(CXX) $(CXXFLAGS) $(OBJS) -o main.exe
 	chmod +x main.exe
+
+leon: $(SRCS) node.h
+	sparc-gaisler-elf-g++ $(CXXFLAGS) -std=c++11 $(SRCS) -o main
+
+myString: $@.cpp $@.h
+	$(CXX) $(CXXFLAGS) $@.cpp -c
 
 readInput: $@.cpp $@.h
 	$(CXX) $(CXXFLAGS) $@.cpp -c
@@ -40,4 +46,4 @@ main: $@.cpp $(OBJS)
 	$(CXX) $(CXXFLAGS) $@.cpp -c
 
 clean:
-	rm -rf *.o main.exe
+	rm -rf *.o *.exe main

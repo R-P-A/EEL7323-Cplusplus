@@ -1,5 +1,6 @@
 #include <iostream>
 #include "clockCalendar.h"
+#include "myString.h"
 
 using namespace std;
 
@@ -25,8 +26,8 @@ string ClockCalendar::toString() {
 	Calendar::readCalendar(year, month, day);
 	Clock::readClock(hour, min, sec, isPM);
 
-	result = to_string(year) + "/" + to_string(month) + "/" + to_string(day) + " - ";
-	result.append(to_string(hour) + ":" + to_string(min) + ":" + to_string(sec));
+	result = numberToString(year) + "/" + numberToString(month) + "/" + numberToString(day) + " - ";
+	result.append(numberToString(hour) + ":" + numberToString(min) + ":" + numberToString(sec));
 	if (isPM)
 		result.append(" pm");
 	else

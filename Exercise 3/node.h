@@ -28,7 +28,11 @@ class Node {
 		Node<T>* prev;
 
 	public:
-		Node():Node(0) { }
+		Node() {
+			data = 0;
+			next = NULL;
+			prev = NULL;
+		}
 		
 		Node(T data) {
 			this->data = data;

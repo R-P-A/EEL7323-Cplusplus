@@ -7,6 +7,8 @@
 #include "menu.h"
 #include "clockCalendar.h"
 #include "timer.h"
+#include "myString.h"
+#include "readInput.h"
 
 #define brazilTime 3*60*60;
 

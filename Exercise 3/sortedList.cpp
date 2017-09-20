@@ -3,6 +3,7 @@
 #include "sortedList.h"
 #include "model.h"
 #include "node.h"
+#include "myString.h"
 
 using namespace std;
 
@@ -130,8 +131,10 @@ Model* SortedList::find(int id) {
 string SortedList::listAll() {
 	string result = "";
 	Node<Model*>* currentNode = head;
+	int currentId;
 	while (currentNode != NULL) {
-		result.append(to_string(currentNode->getData()->getId()) + "\n");
+		currentId = currentNode->getData()->getId();
+		result.append(numberToString(currentId) + "\n");
 		currentNode = currentNode->getNext();
 	}
 	return result;

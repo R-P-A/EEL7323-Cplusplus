@@ -17,6 +17,7 @@
 #include <iostream>
 #include "clock.h"
 #include "calendar.h"
+#include "myString.h"
 
 using namespace std;
 

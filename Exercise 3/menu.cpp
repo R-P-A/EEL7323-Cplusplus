@@ -1,11 +1,12 @@
 #include <iostream>
-#include <exception>
+#include <sstream>
 #include "sortedList.h"
 #include "student.h"
 #include "menu.h"
-#include "readInput.h"
 #include "clockCalendar.h"
 #include "timer.h"
+#include "myString.h"
+#include "readInput.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ bool Menu::mainMenu(SortedList* studentList, ClockCalendar* timeDate, Timer* tim
 	cout << "5. List all student's Ids\n";
 	cout << "6. Exit!\n";
 
-	if (!readInt(option))
+	if (!readNumber(option))
 		option = -1;
 
 	switch (option) {
@@ -66,7 +67,7 @@ Student* Menu::createStudent() {
 	string tempString;
 
 	cout << "\nInsert the student's Id:\n";
-	while (!readInt(tempInt) || tempInt < 0) {
+	while (!readNumber(tempInt) || tempInt < 0) {
 		cout << "Value not an integer or less than 0. Please try a new value.\n";
 	}
 	newStudent->setId(tempInt);
@@ -78,12 +79,12 @@ Student* Menu::createStudent() {
 	newStudent->setName(tempString);
 
 	cout << "\nInsert the student's first grade:\n";
-	while (!readFloat(tempFloat) || !(newStudent->setGrade1(tempFloat))) {
+	while (!readNumber(tempFloat) || !(newStudent->setGrade1(tempFloat))) {
 		cout << "Value not a float or out of range (0-10). Please try a new value.\n";
 	}
 
 	cout << "\nInsert the student's second grade:\n";
-	while (!readFloat(tempFloat) || !(newStudent->setGrade2(tempFloat))) {
+	while (!readNumber(tempFloat) || !(newStudent->setGrade2(tempFloat))) {
 		cout << "Value not a float or out of range (0-10). Please try a new value.\n";
 	}
 
@@ -112,7 +113,7 @@ void Menu::removeStudent(SortedList* studentList) {
 	int newId;
 
 	cout << "\nInsert the student Id to remove:\n";
-	if (!readInt(newId))
+	if (!readNumber(newId))
 		newId = -1;
 
 	if (studentList->remove(newId)) {
@@ -144,7 +145,7 @@ void Menu::editStudent(SortedList* studentList, ClockCalendar* timeDate, Timer* 
 void Menu::printStudent(SortedList* studentList) {
 	int newId;
 	cout << "\nInsert the student Id to print:\n";
-	if (!readInt(newId))
+	if (!readNumber(newId))
 		newId = -1;
 
 	Student* newStudent = (Student*) studentList->find(newId);

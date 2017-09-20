@@ -1,6 +1,7 @@
 #include <iostream>
 #include <exception>
 #include "student.h"
+#include "myString.h"
 
 using namespace std;
 
@@ -77,11 +78,12 @@ float Student::getFinalGrade() {
 
 string Student::toString() {
 	string result;
+	float finalGrade = getFinalGrade();
 	result = "Name:\t\t" + name + "\n";
-	result.append("Id:\t\t" + to_string(id) + "\n");
-	result.append("Grade 1:\t" + to_string(grade1) + "\n");
-	result.append("Grade 2:\t" + to_string(grade2) + "\n");
-	result.append("Final Grade:\t" + to_string(getFinalGrade()) + "\n");
+	result.append("Id:\t\t" + numberToString(id) + "\n");
+	result.append("Grade 1:\t" + numberToString(grade1) + "\n");
+	result.append("Grade 2:\t" + numberToString(grade2) + "\n");
+	result.append("Final Grade:\t" + numberToString(finalGrade) + "\n");
 	result.append("Created:\t" + creationTime + "\n");
 	result.append("Last Modified:\t" + modificationTime + "\n");
 	return result;

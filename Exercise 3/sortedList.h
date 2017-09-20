@@ -19,6 +19,7 @@
 #include <exception>
 #include "model.h"
 #include "node.h"
+#include "myString.h"
 
 using namespace std;
 

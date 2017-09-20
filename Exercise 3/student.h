@@ -12,6 +12,7 @@
 #include <iostream>
 #include <exception>
 #include "model.h"
+#include "myString.h"
 
 using namespace std;
 
