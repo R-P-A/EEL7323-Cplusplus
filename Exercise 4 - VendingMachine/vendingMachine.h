@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "product.h"
+#include "myString.h"
 
 using namespace std;
 
