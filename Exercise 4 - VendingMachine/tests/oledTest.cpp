@@ -5,15 +5,12 @@
 using namespace std;
 
 int main(void) {
-	char helloWorld[20] = "Hello";
-	cout << clock() << endl;
-	delay(100000);
-	cout << clock() << endl;
+	string helloWorld = "Hi Test2";
 	oledInit();
-	delay(100000);
-	oledFill();
-	delay(100000);
 	oledClear();
+	setLine(1);
 	printString(helloWorld);
+	delay(500000);
+	oledOff();
 	return 0;
 }

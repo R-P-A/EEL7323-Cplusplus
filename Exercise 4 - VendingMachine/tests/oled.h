@@ -3,6 +3,9 @@
 
 #include <time.h>
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 //Pin list
 #define CS 24 //pin 1
@@ -36,7 +39,7 @@ void clearLine(int line);
 /** Print one character */
 void printChar(char aux);
 /** Print a string */
-void printString(char* string);
+void printString(string stringToPrint);
 /** Function that allow printing to either the OLED or the std output */
 void printGeneric(char str[], int line, bool printPlace);
 

@@ -1,4 +1,4 @@
-#include "Oled.h"
+#include "oled.h"
 
 using namespace std;
 
@@ -258,14 +258,14 @@ void oledInit() {
 
 	/* Apply power to VDD (LOW) */
 	setPin(VDDC, 0);
-	delay(100000);
+	delay(100);
 	/* Send display OFF command */
 	sendCommand(0xAE);
 	/* Reset the display */
 	setPin(RES, 0);
-	delay(100000);
+	delay(100);
 	setPin(RES, 1);
-	delay(100000);
+	delay(100);
 	/* Set Charge Pump */
 	sendCommand(0x8D);
 	sendCommand(0x14);
@@ -276,7 +276,7 @@ void oledInit() {
 	delay(1);
 	setPin(VBATC, 0);
 	/* Delay 100ms */
-	delay(100000);
+	delay(100);
 	/* Set Segment Re-Map */
 	sendCommand(0xA1);
 	/* Set COM Output Scan Direction */
@@ -286,7 +286,7 @@ void oledInit() {
 	sendCommand(0x02);
 	/* Send Display On Command */
 	sendCommand(0xAF);
-	delay(100000);
+	delay(100);
 }
 
 void oledOff() {
@@ -295,7 +295,7 @@ void oledOff() {
 	/* Turn off power to VBAT (HIGH) */
 	delay(1);
 	setPin(VBATC, 1);
-	delay(100000);
+	delay(100);
 	/* Turn off power to VDD (HIGH) */
 	setPin(VDDC, 1);
 }
@@ -337,9 +337,9 @@ void printChar(char aux) {
 		sendData(characters[8*aux + i]);
 }
 
-void printString(char* string) {
-	for (unsigned i = 0; string[i] != 0; i++)
-		printChar(string[i]);
+void printString(string stringToPrint) {
+	for (unsigned i = 0; stringToPrint[i] != 0; i++)
+		printChar(stringToPrint[i]);
 }
 
 // Function from util.h Change this comment later
