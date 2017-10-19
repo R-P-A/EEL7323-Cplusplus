@@ -18,8 +18,7 @@ using namespace std;
 #define VBATC 30 //pin 9
 #define VDDC 31 //pin 10
 
-class Oled
-{
+class Oled {
 	private:
 		/** Send data through the SPI */
 		void sendData(char data);

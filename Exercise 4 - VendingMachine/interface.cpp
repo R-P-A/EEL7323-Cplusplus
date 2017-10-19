@@ -1,58 +1,117 @@
 #include "interface.h"
 
 Interface::Interface() {
-	cout << "Constructing the interface...\n\n";
+	Oled oledScreen;
+	string tempString;
+	int tempInt;
+	oledScreen.setLine(0);
+	oledScreen.printString("Constructing...");
 	Product coke("Coke", 150);
 	Product sprite("Sprite", 150);
 	vector<Product> products = {coke, sprite};
 	VendingMachine vm(products);
-	cout << "Vending machine started...\n\n";
 	int input = 1;
 	while(input) {
-		cout << "\nCurrent configurations: \n" << vm.toString() << endl;
-		cout << "Choose a new option:\n";
-		cout << "0 - Exit\n1 - Insert Money\n2 - Give Money Back\n3 - Buy a Coke\n4 - Buy a Pepsi\n";
-		readNumber(input);
+		oledScreen.clearScreen();
+		oledScreen.setLine(0);
+		oledScreen.printString("Balance: ");
+		tempInt = vm.getTotalValue();
+		tempString = numberToString(tempInt);
+		oledScreen.printString(tempString);
+		oledScreen.clearLine(1);
+		oledScreen.setLine(1);
+		oledScreen.printString("Choose option:");
+		cout << "\n0 - Exit\n1 - Insert Money\n2 - Give Money Back\n3 - Buy a Coke\n4 - Buy a Pepsi\n";
+		cin >> input;
+		cin.clear();
 		if (input == 1) {
-			insertMoney(vm);
+			insertMoney(vm, oledScreen);
 		} else if (input == 2) {
-			giveMoneyBack(vm);
+			giveMoneyBack(vm, oledScreen);
 		} else if (input == 3) {
-			buyCoke(vm);
+			buyCoke(vm, oledScreen);
 		} else if (input == 4) {
-			buySprite(vm);
+			buySprite(vm, oledScreen);
 		} else {
 			input = 0;
 		}
 	}
 }
 
-void Interface::insertMoney(VendingMachine& vm) {
+void Interface::insertMoney(VendingMachine& vm, Oled& oledScreen) {
 	int input;
-	cout << "Type the ammount of money\n";
-	readNumber(input);
+	string tempString;
+	int tempInt;
+	oledScreen.clearScreen();
+	oledScreen.setLine(0);
+	oledScreen.printString("Insert money");
+	cout << "\nType the ammount of money\n";
+	cin >> input;
+	cin.clear();
 	vm.insertValue(input);
 	if (vm.getTotalValue() > vm.getProducts()[0].getValue()) {
-		cout << "Amount of money given back: " << vm.getValueBack(vm.getTotalValue() - vm.getProducts()[0].getValue()) << endl;
+		oledScreen.clearScreen();
+		oledScreen.setLine(0);
+		oledScreen.printString("Balance: ");
+		tempInt = vm.getTotalValue();
+		tempString = numberToString(tempInt);
+		oledScreen.printString(tempString);
+		oledScreen.setLine(1);
+		oledScreen.clearLine(1);
+		oledScreen.printString("Given back: ");
+		tempInt = vm.getValueBack(vm.getTotalValue() - vm.getProducts()[0].getValue());
+		tempString = numberToString(tempInt);
+		oledScreen.printString(tempString);
+		delayms(3000);
 	}
 }
 
-void Interface::giveMoneyBack(VendingMachine& vm) {
-	cout << "Amount of money given back: " << vm.getValueBack(20000) << endl;
+void Interface::giveMoneyBack(VendingMachine& vm, Oled& oledScreen) {
+	string tempString;
+	int tempInt;
+	oledScreen.clearScreen();
+	oledScreen.setLine(0);
+	oledScreen.printString("Balance: ");
+	tempInt = vm.getTotalValue();
+	tempString = numberToString(tempInt);
+	oledScreen.printString(tempString);
+	oledScreen.setLine(1);
+	oledScreen.clearLine(1);
+	oledScreen.printString("Given back: ");
+	tempInt = vm.getValueBack(20000);
+	tempString = numberToString(tempInt);
+	oledScreen.printString(tempString);
+	delayms(3000);
 }
 
-void Interface::buyCoke(VendingMachine& vm) {
+void Interface::buyCoke(VendingMachine& vm, Oled& oledScreen) {
 	if (vm.buyProduct(0)) {
-		cout << "Coke bought with sucess!\n";
+		oledScreen.clearScreen();
+		oledScreen.setLine(0);
+		oledScreen.printString("Coke Bought!");
+		delayms(3000);
 	} else {
-		cout << "Insufficient funds\n";
+		oledScreen.clearScreen();
+		oledScreen.setLine(0);
+		oledScreen.printString("Insufficient");
+		oledScreen.setLine(1);
+		oledScreen.printString("        funds");
+		delayms(3000);
 	}
 }
 
-void Interface::buySprite(VendingMachine& vm) {
+void Interface::buySprite(VendingMachine& vm, Oled& oledScreen) {
 	if (vm.buyProduct(1)) {
-		cout << "Sprite bought with sucess!\n";
+		oledScreen.clearScreen();
+		oledScreen.setLine(0);
+		oledScreen.printString("Sprite Bought!");
+		delayms(3000);
 	} else {
-		cout << "Insufficient funds\n";
+		oledScreen.clearScreen();
+		oledScreen.setLine(0);
+		oledScreen.printString("Insufficient");
+		oledScreen.setLine(1);
+		oledScreen.printString("        funds");
+		delayms(3000);
 	}
 }

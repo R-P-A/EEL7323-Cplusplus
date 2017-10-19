@@ -6,15 +6,18 @@
 #include "vendingMachine.h"
 #include "product.h"
 #include "readInput.h"
+#include "myTime.h"
+#include "myString.h"
+#include "oled.h"
 
 using namespace std;
 
 class Interface {
 	private:
-		void insertMoney(VendingMachine& vm);
-		void giveMoneyBack(VendingMachine& vm);
-		void buyCoke(VendingMachine& vm);
-		void buySprite(VendingMachine& vm);
+		void insertMoney(VendingMachine& vm, Oled& oledScreen);
+		void giveMoneyBack(VendingMachine& vm, Oled& oledScreen);
+		void buyCoke(VendingMachine& vm, Oled& oledScreen);
+		void buySprite(VendingMachine& vm, Oled& oledScreen);
 	public:
 		Interface();
 };

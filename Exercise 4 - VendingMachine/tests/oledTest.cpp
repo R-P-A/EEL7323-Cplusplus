@@ -1,6 +1,7 @@
 #include <iostream>
 #include <time.h>
 #include "oled.h"
+#include "readInput.h"
 
 using namespace std;
 
@@ -15,7 +16,11 @@ int main(void) {
 	delayms(3000);
 	oledTest.clearLine(1);
 	oledTest.setLine(2);
-	oledTest.printString("Hello again!");
+	oledTest.printString("Type something");
+	string tempString;
+	cin >> tempString;
+	oledTest.setLine(3);
+	oledTest.printString(tempString);
 	delayms(3000);
 	oledTest.clearScreen();
 	delayms(3000);

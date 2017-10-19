@@ -1,7 +1,7 @@
 # CXX = g++
 CXX = ../../../../Atlys/bcc-2.0.1-gcc/bin/sparc-gaisler-elf-g++
 CXXFLAGS = -Wall -std=c++11
-SRCS = oled.cpp myTime.cpp oledTest.cpp
+SRCS = oled.cpp myTime.cpp readInput.cpp oledTest.cpp
 OBJS = ${SRCS:.cpp=.o}
 
 all: linux
@@ -14,6 +14,9 @@ oled: $@.cpp $@.h
 	$(CXX) $(CXXFLAGS) $@.cpp -c
 
 myTime: $@.cpp $@.h
+	$(CXX) $(CXXFLAGS) $@.cpp -c
+
+readInput: $@.cpp $@.h
 	$(CXX) $(CXXFLAGS) $@.cpp -c
 
 oledTest: $@.cpp $(OBJS)
