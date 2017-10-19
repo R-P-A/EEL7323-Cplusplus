@@ -5,9 +5,9 @@ OBJS = ${SRCS:.cpp=.o}
 
 all: linux
 
-leon: $(SRCS)
-	F:\bcc-2.0.1-gcc\bin\sparc-gaisler-elf-g++.exe -std=c++11 $(SRCS) -o main.exe
-	chmod +x main.exe
+leon-linux: $(OBJS)
+	CXX = ../../../Atlys/bcc-2.0.1-gcc/bin/sparc-gaisler-elf-g++
+	$(CXX) $(CXXFLAGS) -std=c++11 $(OBJS) -o main.exe
 
 linux: $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o main.exe
