@@ -5,6 +5,7 @@
 #include <vector>
 #include "vendingMachine.h"
 #include "product.h"
+#include "readInput.h"
 
 using namespace std;
 

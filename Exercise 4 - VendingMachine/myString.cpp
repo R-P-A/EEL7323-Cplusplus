@@ -13,7 +13,14 @@ string numberToString(type& input) {
 	return output;
 }
 template string numberToString<int>(int& input);
+template string numberToString<short int>(short int& input);
+template string numberToString<long int>(long int& input);
+template string numberToString<long long int>(long long int& input);
+template string numberToString<unsigned int>(unsigned int& input);
+template string numberToString<unsigned short int>(unsigned short int& input);
+template string numberToString<unsigned long int>(unsigned long int& input);
+template string numberToString<unsigned long long int>(unsigned long long int& input);
 template string numberToString<float>(float& input);
 template string numberToString<double>(double& input);
-template string numberToString<long>(long& input);
-template string numberToString<unsigned int>(unsigned int& input);
+template string numberToString<long double>(long double& input);
+template string numberToString<char>(char& input);

@@ -5,21 +5,21 @@
 using namespace std;
 
 int main(void) {
-	string helloWorld = "Hi Test2";
-	oledInit();
-	oledClear();
-	setLine(1);
-	printString(helloWorld);
-	helloWorld = "Hi 123";
-	delay(5000000);
-	clearLine(1);
-	setLine(2);
-	printString(helloWorld);
-	delay(5000000);
-	oledClear();
-	delay(5000000);
-	oledFill();
-	delay(5000000);
-	oledOff();
+	cout << "testing delay 3 seconds" << endl;
+	delayms(3000);
+	cout << "delay testing done" << endl;
+	Oled oledTest;
+	oledTest.clearScreen();
+	oledTest.setLine(1);
+	oledTest.printString("Hello World!");
+	delayms(3000);
+	oledTest.clearLine(1);
+	oledTest.setLine(2);
+	oledTest.printString("Hello again!");
+	delayms(3000);
+	oledTest.clearScreen();
+	delayms(3000);
+	oledTest.fillScreen();
+	delayms(3000);
 	return 0;
 }

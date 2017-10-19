@@ -7,12 +7,12 @@ Interface::Interface() {
 	vector<Product> products = {coke, sprite};
 	VendingMachine vm(products);
 	cout << "Vending machine started...\n\n";
-	int input;
+	int input = 1;
 	while(input) {
 		cout << "\nCurrent configurations: \n" << vm.toString() << endl;
 		cout << "Choose a new option:\n";
 		cout << "0 - Exit\n1 - Insert Money\n2 - Give Money Back\n3 - Buy a Coke\n4 - Buy a Pepsi\n";
-		cin >> input;
+		readNumber(input);
 		if (input == 1) {
 			insertMoney(vm);
 		} else if (input == 2) {
@@ -30,7 +30,7 @@ Interface::Interface() {
 void Interface::insertMoney(VendingMachine& vm) {
 	int input;
 	cout << "Type the ammount of money\n";
-	cin >> input;
+	readNumber(input);
 	vm.insertValue(input);
 	if (vm.getTotalValue() > vm.getProducts()[0].getValue()) {
 		cout << "Amount of money given back: " << vm.getValueBack(vm.getTotalValue() - vm.getProducts()[0].getValue()) << endl;
