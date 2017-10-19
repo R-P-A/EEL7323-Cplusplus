@@ -4,19 +4,11 @@
 #include <iostream>
 #include <string>
 #include "myTime.h"
+#include "gpio.h"
 
 using namespace std;
 
 #define CLOCKS_PER_MS 1000
-
-//Pin list
-#define CS 24 //pin 1
-#define SDIN 25 //pin 2
-#define SCLK 27 //pin 4 
-#define DC 28 //pin 7
-#define RES 29 //pin 8
-#define VBATC 30 //pin 9
-#define VDDC 31 //pin 10
 
 class Oled {
 	private:
@@ -24,8 +16,6 @@ class Oled {
 		void sendData(char data);
 		/** Send a command through the SPI */
 		void sendCommand(unsigned command);
-		/** Set a pin */
-		void setPin(int pin, int value);
 	public:
 		Oled();
 		~Oled();
