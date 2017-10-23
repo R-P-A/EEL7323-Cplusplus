@@ -9,6 +9,7 @@
 #include "myTime.h"
 #include "myString.h"
 #include "oled.h"
+#include "gpio.h"
 
 using namespace std;
 

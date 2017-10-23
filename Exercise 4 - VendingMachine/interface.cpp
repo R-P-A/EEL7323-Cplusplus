@@ -1,17 +1,20 @@
 #include "interface.h"
 
 Interface::Interface() {
+	// Variables
 	Oled oledScreen;
 	string tempString;
 	int tempInt;
+
+	// Initialization
 	oledScreen.setLine(0);
 	oledScreen.printString("Constructing...");
 	Product coke("Coke", 150);
 	Product sprite("Sprite", 150);
 	vector<Product> products = {coke, sprite};
 	VendingMachine vm(products);
-	int input = 1;
-	while(input) {
+
+	while(!getPinIO(BTNC)) {
 		oledScreen.clearScreen();
 		oledScreen.setLine(0);
 		oledScreen.printString("Balance: ");
@@ -22,33 +25,67 @@ Interface::Interface() {
 		oledScreen.setLine(1);
 		oledScreen.printString("Choose option:");
 		cout << "\n0 - Exit\n1 - Insert Money\n2 - Give Money Back\n3 - Buy a Coke\n4 - Buy a Pepsi\n";
-		cin >> input;
-		cin.clear();
-		if (input == 1) {
+		// Wait loop
+		while (!getPinIO(BTNC) && !getPinIO(BTNU) && !getPinIO(BTNL) && !getPinIO(BTND) && !getPinIO(BTNR));
+		if (getPinIO(BTNU)) {
 			insertMoney(vm, oledScreen);
-		} else if (input == 2) {
+		} else if (getPinIO(BTND)) {
 			giveMoneyBack(vm, oledScreen);
-		} else if (input == 3) {
+		} else if (getPinIO(BTNL)) {
 			buyCoke(vm, oledScreen);
-		} else if (input == 4) {
+		} else if (getPinIO(BTNR)) {
 			buySprite(vm, oledScreen);
-		} else {
-			input = 0;
 		}
+		// Delay to stabilize BTNC
+		delayms(100);
 	}
 }
 
 void Interface::insertMoney(VendingMachine& vm, Oled& oledScreen) {
-	int input;
+	int money = 0;
 	string tempString;
 	int tempInt;
+	bool switch0, switch1, switch2, switch3, switch4;
+
 	oledScreen.clearScreen();
 	oledScreen.setLine(0);
 	oledScreen.printString("Insert money");
-	cout << "\nType the ammount of money\n";
-	cin >> input;
-	cin.clear();
-	vm.insertValue(input);
+	// Wait loop
+	while (!getPinIO(BTNC));
+	while (getPinIO(BTNC));
+	switch0 = getPinIO(SW0);
+	switch1 = getPinIO(SW1);
+	switch2 = getPinIO(SW2);
+	switch3 = getPinIO(SW3);
+	switch4 = getPinIO(SW4);
+
+	if (switch0)
+		money += 5;
+	if (switch1)
+		money += 10;
+	if (switch2)
+		money += 25;
+	if (switch3)
+		money += 50;
+	if (switch4)
+		money += 100;
+
+	delayms(200);
+
+	if ((switch0 && !switch1 && !switch2 && !switch3 && !switch4) ||
+		(!switch0 && switch1 && !switch2 && !switch3 && !switch4) ||
+		(!switch0 && !switch1 && switch2 && !switch3 && !switch4) ||
+		(!switch0 && !switch1 && !switch2 && switch3 && !switch4) ||
+		(!switch0 && !switch1 && !switch2 && !switch3 && switch4)) {
+		vm.insertValue(money);		
+	} else {
+		oledScreen.clearScreen();oledScreen.setLine(1);
+		oledScreen.clearLine(1);
+		oledScreen.printString("Given back: ");
+		tempString = numberToString(money);
+		oledScreen.printString(tempString);
+		delayms(3000);
+	}
 	if (vm.getTotalValue() > vm.getProducts()[0].getValue()) {
 		oledScreen.clearScreen();
 		oledScreen.setLine(0);

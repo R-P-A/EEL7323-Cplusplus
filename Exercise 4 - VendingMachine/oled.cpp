@@ -2,10 +2,6 @@
 
 /* Global variables */
 
-volatile unsigned int *output = (volatile unsigned int *)0x80000a04;
-volatile unsigned int *data = (volatile unsigned int *)0x80000a00;
-volatile unsigned int *direction = (volatile unsigned int *)0x80000a08;
-
 int characters[] = {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,		// 0x00, NUL
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,		// 0x01, SOH
@@ -139,23 +135,21 @@ int characters[] = {
 
 Oled::Oled() {
 	/* Set initial value for some of the pins before starting the power-on sequence */
-	setPin(VDDC, 1);
-	setPin(RES, 1);
-	setPin(VBATC, 1);
-	setPin(CS, 1);
-	setPin(SCLK, 0);
-	
-	*direction = 0xFFFFFFFF;
+	setPinIO(VDDC, 1);
+	setPinIO(RES, 1);
+	setPinIO(VBATC, 1);
+	setPinIO(CS, 1);
+	setPinIO(SCLK, 0);
 
 	/* Apply power to VDD (LOW) */
-	setPin(VDDC, 0);
+	setPinIO(VDDC, 0);
 	delayus(100);
 	/* Send display OFF command */
 	sendCommand(0xAE);
 	/* Reset the display */
-	setPin(RES, 0);
+	setPinIO(RES, 0);
 	delayus(100);
-	setPin(RES, 1);
+	setPinIO(RES, 1);
 	delayus(100);
 	/* Set Charge Pump */
 	sendCommand(0x8D);
@@ -165,7 +159,7 @@ Oled::Oled() {
 	sendCommand(0xF1);
 	/* Apply power to VBAT */
 	delayus(1);
-	setPin(VBATC, 0);
+	setPinIO(VBATC, 0);
 	/* Delay 100ms */
 	delayus(100);
 	/* Set Segment Re-Map */
@@ -185,10 +179,10 @@ Oled::~Oled() {
 	sendCommand(0xAE);
 	/* Turn off power to VBAT (HIGH) */
 	delayus(1);
-	setPin(VBATC, 1);
+	setPinIO(VBATC, 1);
 	delayus(100);
 	/* Turn off power to VDD (HIGH) */
-	setPin(VDDC, 1);
+	setPinIO(VDDC, 1);
 }
 
 void Oled::setLine(unsigned line) {
@@ -235,101 +229,54 @@ void Oled::printString(string stringToPrint) {
 
 void Oled::sendData(char data) {
 	/* CS must be low to send any data through the SPI (LOW) */
-	setPin(CS, 0);
+	setPinIO(CS, 0);
 	/* DC must be high to send data (HIGH) */
-	setPin(DC, 1);
+	setPinIO(DC, 1);
 
 	/* Loop used to send the entire char, bit by bit, MSB first */
 	for (int i = 7; i >= 0; i--) {
 		unsigned bit = (data >> i) & (0x00000001);
 		/* Put the bit value in the SDIN pin */
-		setPin(SDIN, bit);
+		setPinIO(SDIN, bit);
 		/* Wait for SDIN stabilize */
 		delayus(5);
 		/* Send the bit in SDIN raising the clock to HIGH */
-		setPin(SCLK, 1);
+		setPinIO(SCLK, 1);
 		/* Wait some time */
 		delayus(5);
 		/* Set clock to low again */
-		setPin(SCLK, 0);
+		setPinIO(SCLK, 0);
 		/* Wait some time before sending the next bit */
 		delayus(5);
 	}
 
 	/* CS is set to high to stop sending data through the SPI(HIGH) */
-	setPin(CS, 1);
+	setPinIO(CS, 1);
 }
 
 void Oled::sendCommand(unsigned command) {
 	/* CS must be low to send any data through the SPI (LOW) */
-	setPin(CS, 0);
+	setPinIO(CS, 0);
 	/* DC must be low to send commands (LOW) */
-	setPin(DC, 0);
+	setPinIO(DC, 0);
 
 	/* Loop used to send the entire command, bit by bit, MSB first */
 	for (int i = 7; i >= 0; i--) {
 		unsigned bit = (command >> i) & (0x00000001);
 		/* Put the bit value in the SDIN pin */
-		setPin(SDIN, bit);
+		setPinIO(SDIN, bit);
 		/* Wait for SDIN stabilize */
 		delayus(5);
 		/* Send the bit in SDIN raising the clock to HIGH */
-		setPin(SCLK, 1);
+		setPinIO(SCLK, 1);
 		/* Wait some time */
 		delayus(5);
 		/* Set clock to low again */
-		setPin(SCLK, 0);
+		setPinIO(SCLK, 0);
 		/* Wait some time before sending the next bit */
 		delayus(5);
 	}
 
 	/* CS is set to high to stop sending data through the SPI(HIGH) */
-	setPin(CS, 1);
-}
-
-void Oled::setPin(int pin, int value) {
-	switch (pin) {
-	case CS:
-		if (value)
-			*output = *output | (0x01000000);
-		else
-			*output = *output & (0xFEFFFFFF);
-		break;
-	case SDIN:
-		if (value)
-			*output = *output | (0x02000000);
-		else
-			*output = *output & (0xFDFFFFFF);
-		break;
-	case SCLK:
-		if (value)
-			*output = *output | (0x08000000);
-		else
-			*output = *output & (0xF7FFFFFF);
-		break;
-	case DC:
-		if (value)
-			*output = *output | (0x10000000);
-		else
-			*output = *output & (0xEFFFFFFF);
-		break;
-	case RES:
-		if (value)
-			*output = *output | (0x20000000);
-		else
-			*output = *output & (0xDFFFFFFF);
-		break;
-	case VBATC:
-		if (value)
-			*output = *output | (0x40000000);
-		else
-			*output = *output & (0xBFFFFFFF);
-		break;
-	case VDDC:
-		if (value)
-			*output = *output | (0x80000000);
-		else
-			*output = *output & (0x7FFFFFFF);
-		break;
-	}
+	setPinIO(CS, 1);
 }

@@ -1,7 +1,7 @@
 # CXX = g++
 CXX = ../../../Atlys/bcc-2.0.1-gcc/bin/sparc-gaisler-elf-g++
 CXXFLAGS = -Wall -std=c++11
-SRCS = product.cpp vendingMachine.cpp interface.cpp oled.cpp myString.cpp readInput.cpp myTime.cpp main.cpp
+SRCS = product.cpp vendingMachine.cpp interface.cpp gpio.cpp oled.cpp myString.cpp readInput.cpp myTime.cpp main.cpp
 OBJS = ${SRCS:.cpp=.o}
 
 all: linux
@@ -17,6 +17,9 @@ vendingMachine: $@.cpp $@.h
 	$(CXX) $(CXXFLAGS) $@.cpp -c
 
 interface: $@.cpp $@.h
+	$(CXX) $(CXXFLAGS) $@.cpp -c
+
+gpio: $@.cpp $@.h
 	$(CXX) $(CXXFLAGS) $@.cpp -c
 
 oled: $@.cpp $@.h
