@@ -24,7 +24,7 @@ Interface::Interface() {
 		oledScreen.clearLine(1);
 		oledScreen.setLine(1);
 		oledScreen.printString("Choose option:");
-		cout << "\n0 - Exit\n1 - Insert Money\n2 - Give Money Back\n3 - Buy a Coke\n4 - Buy a Pepsi\n";
+		cout << "\nBTNC - Exit\nBTNU - Insert Money\nBTND - Give Money Back\nBTNL - Buy a Coke\nBTNR - Buy a Pepsi\n";
 		// Wait loop
 		while (!getPinIO(BTNC) && !getPinIO(BTNU) && !getPinIO(BTNL) && !getPinIO(BTND) && !getPinIO(BTNR));
 		if (getPinIO(BTNU)) {
@@ -71,8 +71,9 @@ void Interface::insertMoney(VendingMachine& vm, Oled& oledScreen) {
 		(!switch0 && switch1 && !switch2 && !switch3 && !switch4) ||
 		(!switch0 && !switch1 && switch2 && !switch3 && !switch4) ||
 		(!switch0 && !switch1 && !switch2 && switch3 && !switch4) ||
-		(!switch0 && !switch1 && !switch2 && !switch3 && switch4)) {
-		vm.insertValue(money);		
+		(!switch0 && !switch1 && !switch2 && !switch3 && switch4) ||
+		(!switch0 && !switch1 && !switch2 && !switch3 && !switch4)) {
+		vm.insertValue(money);
 	} else {
 		oledScreen.clearScreen();oledScreen.setLine(1);
 		oledScreen.clearLine(1);
@@ -158,9 +159,9 @@ void Interface::giveBackMachine(VendingMachine& vm, Oled& oledScreen, int moneyR
 	coins = moneyReturned / 100;
 	for (int i = 0; i < coins; i++) {
 		setPinIO(LED4, 1);
-		delayms(500);
+		delayms(800);
 		setPinIO(LED4, 0);
-		delayms(50);
+		delayms(100);
 	}
 	moneyReturned = moneyReturned % 100;
 
@@ -168,9 +169,9 @@ void Interface::giveBackMachine(VendingMachine& vm, Oled& oledScreen, int moneyR
 	coins = moneyReturned / 50;
 	for (int i = 0; i < coins; i++) {
 		setPinIO(LED3, 1);
-		delayms(500);
+		delayms(800);
 		setPinIO(LED3, 0);
-		delayms(50);
+		delayms(100);
 	}
 	moneyReturned = moneyReturned % 50;
 
@@ -178,9 +179,9 @@ void Interface::giveBackMachine(VendingMachine& vm, Oled& oledScreen, int moneyR
 	coins = moneyReturned / 25;
 	for (int i = 0; i < coins; i++) {
 		setPinIO(LED2, 1);
-		delayms(500);
+		delayms(800);
 		setPinIO(LED2, 0);
-		delayms(50);
+		delayms(100);
 	}
 	moneyReturned = moneyReturned % 25;
 
@@ -188,9 +189,9 @@ void Interface::giveBackMachine(VendingMachine& vm, Oled& oledScreen, int moneyR
 	coins = moneyReturned / 10;
 	for (int i = 0; i < coins; i++) {
 		setPinIO(LED1, 1);
-		delayms(500);
+		delayms(800);
 		setPinIO(LED1, 0);
-		delayms(50);
+		delayms(100);
 	}
 	moneyReturned = moneyReturned % 10;
 
@@ -198,9 +199,9 @@ void Interface::giveBackMachine(VendingMachine& vm, Oled& oledScreen, int moneyR
 	coins = moneyReturned / 5;
 	for (int i = 0; i < coins; i++) {
 		setPinIO(LED0, 1);
-		delayms(500);
+		delayms(800);
 		setPinIO(LED0, 0);
-		delayms(50);
+		delayms(100);
 	}
 	moneyReturned = moneyReturned % 5;
 }
