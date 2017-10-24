@@ -53,6 +53,10 @@ int main(void) {
 	oledTest.fillScreen();
 	delayms(3000);
 	setPinIO(LED0, 0);
-	getPinIO(LED0);
+	setPinIO(LED1, 0);
+	setPinIO(LED2, 0);
+	setPinIO(LED3, 0);
+	setPinIO(LED4, 0);
+	setPinIO(LED5, 0);
 	return 0;
 }

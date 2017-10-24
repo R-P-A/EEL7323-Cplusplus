@@ -42,17 +42,12 @@ Interface::Interface() {
 }
 
 void Interface::insertMoney(VendingMachine& vm, Oled& oledScreen) {
+	// Variables
 	int money = 0;
 	string tempString;
 	int tempInt;
 	bool switch0, switch1, switch2, switch3, switch4;
 
-	oledScreen.clearScreen();
-	oledScreen.setLine(0);
-	oledScreen.printString("Insert money");
-	// Wait loop
-	while (!getPinIO(BTNC));
-	while (getPinIO(BTNC));
 	switch0 = getPinIO(SW0);
 	switch1 = getPinIO(SW1);
 	switch2 = getPinIO(SW2);
@@ -84,7 +79,8 @@ void Interface::insertMoney(VendingMachine& vm, Oled& oledScreen) {
 		oledScreen.printString("Given back: ");
 		tempString = numberToString(money);
 		oledScreen.printString(tempString);
-		delayms(3000);
+		giveBackMachine(vm, oledScreen, money);
+		delayms(2000);
 	}
 	if (vm.getTotalValue() > vm.getProducts()[0].getValue()) {
 		oledScreen.clearScreen();
@@ -99,7 +95,8 @@ void Interface::insertMoney(VendingMachine& vm, Oled& oledScreen) {
 		tempInt = vm.getValueBack(vm.getTotalValue() - vm.getProducts()[0].getValue());
 		tempString = numberToString(tempInt);
 		oledScreen.printString(tempString);
-		delayms(3000);
+		giveBackMachine(vm, oledScreen, tempInt);
+		delayms(2000);
 	}
 }
 
@@ -118,7 +115,8 @@ void Interface::giveMoneyBack(VendingMachine& vm, Oled& oledScreen) {
 	tempInt = vm.getValueBack(20000);
 	tempString = numberToString(tempInt);
 	oledScreen.printString(tempString);
-	delayms(3000);
+	giveBackMachine(vm, oledScreen, tempInt);
+	delayms(2000);
 }
 
 void Interface::buyCoke(VendingMachine& vm, Oled& oledScreen) {
@@ -151,4 +149,58 @@ void Interface::buySprite(VendingMachine& vm, Oled& oledScreen) {
 		oledScreen.printString("        funds");
 		delayms(3000);
 	}
+}
+
+void Interface::giveBackMachine(VendingMachine& vm, Oled& oledScreen, int moneyReturned) {
+	int coins;
+
+	// Return coins of 100
+	coins = moneyReturned / 100;
+	for (int i = 0; i < coins; i++) {
+		setPinIO(LED4, 1);
+		delayms(500);
+		setPinIO(LED4, 0);
+		delayms(50);
+	}
+	moneyReturned = moneyReturned % 100;
+
+	// Return coins of 50
+	coins = moneyReturned / 50;
+	for (int i = 0; i < coins; i++) {
+		setPinIO(LED3, 1);
+		delayms(500);
+		setPinIO(LED3, 0);
+		delayms(50);
+	}
+	moneyReturned = moneyReturned % 50;
+
+	// Return coins of 25
+	coins = moneyReturned / 25;
+	for (int i = 0; i < coins; i++) {
+		setPinIO(LED2, 1);
+		delayms(500);
+		setPinIO(LED2, 0);
+		delayms(50);
+	}
+	moneyReturned = moneyReturned % 25;
+
+	// Return coins of 10
+	coins = moneyReturned / 10;
+	for (int i = 0; i < coins; i++) {
+		setPinIO(LED1, 1);
+		delayms(500);
+		setPinIO(LED1, 0);
+		delayms(50);
+	}
+	moneyReturned = moneyReturned % 10;
+
+	// Return coins of 5
+	coins = moneyReturned / 5;
+	for (int i = 0; i < coins; i++) {
+		setPinIO(LED0, 1);
+		delayms(500);
+		setPinIO(LED0, 0);
+		delayms(50);
+	}
+	moneyReturned = moneyReturned % 5;
 }

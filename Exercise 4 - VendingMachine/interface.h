@@ -19,6 +19,7 @@ class Interface {
 		void giveMoneyBack(VendingMachine& vm, Oled& oledScreen);
 		void buyCoke(VendingMachine& vm, Oled& oledScreen);
 		void buySprite(VendingMachine& vm, Oled& oledScreen);
+		void giveBackMachine(VendingMachine& vm, Oled& oledScreen, int moneyReturned);
 	public:
 		Interface();
 };
