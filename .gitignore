@@ -1,4 +1,4 @@
 thumbs.db
 *.exe
-.vscode/
 *.o
+*.out

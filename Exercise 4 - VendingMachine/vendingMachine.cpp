@@ -41,10 +41,12 @@ bool VendingMachine::buyProduct(int productIndex) {
 
 string VendingMachine::toString() {
 	string result;
-	result = "Total Value: " + to_string(totalValue) + "\n";
+	int productValue;
+	result = "Total Value: " + numberToString(totalValue) + "\n";
 	result += "Products list: \n";
 	for (unsigned int i = 0; i < products.size(); i++) {
-		result += to_string(i) + " - " + products[i].getName() + "\tValue: " + to_string(products[i].getValue()) + "\n";
+		productValue = products[i].getValue();
+		result += numberToString(i) + " - " + products[i].getName() + "\tValue: " + numberToString(productValue) + "\n";
 	}
 	return result;
 }

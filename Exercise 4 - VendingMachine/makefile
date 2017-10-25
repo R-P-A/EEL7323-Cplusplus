@@ -1,6 +1,7 @@
-CXX = g++
-CXXFLAGS = -Wall
-SRCS = product.cpp vendingMachine.cpp interface.cpp main.cpp
+# CXX = g++
+CXX = ../../../Atlys/bcc-2.0.1-gcc/bin/sparc-gaisler-elf-g++
+CXXFLAGS = -Wall -std=c++11
+SRCS = product.cpp vendingMachine.cpp interface.cpp gpio.cpp oled.cpp myString.cpp readInput.cpp myTime.cpp main.cpp
 OBJS = ${SRCS:.cpp=.o}
 
 all: linux
@@ -18,8 +19,23 @@ vendingMachine: $@.cpp $@.h
 interface: $@.cpp $@.h
 	$(CXX) $(CXXFLAGS) $@.cpp -c
 
+gpio: $@.cpp $@.h
+	$(CXX) $(CXXFLAGS) $@.cpp -c
+
+oled: $@.cpp $@.h
+	$(CXX) $(CXXFLAGS) $@.cpp -c
+
+myString: $@.cpp $@.h
+	$(CXX) $(CXXFLAGS) $@.cpp -c
+
+readInput: $@.cpp $@.h
+	$(CXX) $(CXXFLAGS) $@.cpp -c
+
+myTime: $@.cpp $@.h
+	$(CXX) $(CXXFLAGS) $@.cpp -c
+
 main: $@.cpp $(OBJS)
 	$(CXX) $(CXXFLAGS) $@.cpp -c
 
 clean:
-	rm -rf *.o main.exe
+	rm -rf *.o *.exe *.out
