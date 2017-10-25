@@ -35,10 +35,18 @@ using namespace std;
 #define VBATC 30	// pmod pin 9
 #define VDDC 31		// pmod pin 10
 
-/** Set an output pin */
-void setPinIO(int pin, int value);
+/*
+ *	Set an output pin of LEON3 in Atlys Spartan-6 Board
+ *	@param pin Pin number
+ *	@param value 1 (set) or 0 (clear)
+ */
+void setPinIO(int pin, bool value);
 
-/** Get an input pin */
+/*
+ *	Get an input pin of LEON3 in Atlys Spartan-6 Board
+ *	@param pin Pin number
+ *	@return	Wheter it is set (1) or not (0)
+ */
 bool getPinIO(int pin);
 
 #endif	// GPIO
