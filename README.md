@@ -1,3 +1,7 @@
-Repository for C++ class (EEL7323) - Exercise 1.
+Repository for C++ class (EEL7323)
 
 Professor Eduardo Bezerra.
+
+Original repository for final project:
+
+https://github.com/Rapeize/Intercom
